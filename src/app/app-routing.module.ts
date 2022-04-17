@@ -87,6 +87,26 @@ const routes: Routes = [
     path: 'instructions',
     loadChildren: () => import('./pages/instructions/instructions.module').then( m => m.InstructionsPageModule)
   },
+  {
+    path: 'pickup',
+    loadChildren: () => import('./pages/pickup/pickup.module').then( m => m.PickupPageModule)
+  },
+  {
+    path: 'pickup-item',
+    loadChildren: () => import('./pages/pickup-item/pickup-item.module').then( m => m.PickupItemPageModule)
+  },
+  {
+    path: 'move',
+    loadChildren: () => import('./pages/move/move.module').then( m => m.MovePageModule)
+  },
+  {
+    path: 'movesecond',
+    loadChildren: () => import('./pages/movesecond/movesecond.module').then( m => m.MovesecondPageModule)
+  },
+  {
+    path: 'readme',
+    loadChildren: () => import('./pages/readme/readme.module').then( m => m.ReadmePageModule)
+  },
 ];
 
 @NgModule({

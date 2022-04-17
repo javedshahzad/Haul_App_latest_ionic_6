@@ -48,9 +48,9 @@ export class WalkthroughPage implements OnInit {
 
       this.services = [
         { title: '<span class="big-font">Labor Only</span>', pagetitle: 'Labor Only', icon: 'assets/imgs/pic2.jpg', id:'16',url:"truckonly"},
-        { title: '<span class="big-font">Item Delivery</span>', pagetitle: 'Item Delivery', icon: 'assets/imgs/pic3.png', id:'18',url:"PickupPage"},
+        { title: '<span class="big-font">Item Delivery</span>', pagetitle: 'Item Delivery', icon: 'assets/imgs/pic3.png', id:'18',url:"pickup"},
         { title: '<span class="big-font">Junk Removal</span>', pagetitle: 'Junk Removal', icon: 'assets/imgs/pic4.jpg', id:'23',url:"smallmove"},
-        { title: '<span class="big-font">Full Move</span>', pagetitle: 'Residential or Commercial', icon: 'assets/imgs/pic5.jpg', id:'17',url:"MovePage"},
+        { title: '<span class="big-font">Full Move</span>', pagetitle: 'Residential or Commercial', icon: 'assets/imgs/pic5.jpg', id:'17',url:"move"},
         // { title: '<span class="big-font">Donation Item (FREE!)</span>', pagetitle: 'Charity and Donation Pickup', icon: 'assets/imgs/heart.png', id:'19',url:"charitable"},
       ];
 
@@ -60,7 +60,7 @@ export class WalkthroughPage implements OnInit {
     }
     else{
       this.isLoggedin = false;
-      this.userRole = this.userStoredData['role'];
+      this.userRole = 'vendor';
 
       if(this.userRole == "customer"){
         this.menu.enable(true, 'customer-menu');
@@ -86,28 +86,28 @@ export class WalkthroughPage implements OnInit {
         this.isVendor=true;
 
         this.pagesV = [
-          { title: "Click Here for Step by Step setup",url: "ReadmePage" },
+          { title: "Click Here for Step by Step setup",url: "readme" },
           { title: "Customer Messages",url: "MessagesPage" },
           { title: "Work Orders",url: "VendorordersPage" },
           { title: "Account Settings",url: "VendoraccountPage" },
           { title: "Service Provider Profile",url:  "VendorProfilesettingsPage"},
           { title: "Manage Moving Services",url: "ServicesPage" },
           { title: "Resources",url: "ResourcesPage" },
-          { title: "FAQs",url: "FaqvendorPage" },
-          { title: "About Us",url: "AboutusvendorPage" },
+          { title: "FAQs",url: "faq" },
+          { title: "About Us",url: "aboutus" },
           { title: "View Customer Feedback",url: "FeedbackPage" },
-          { title: "Contact HAUL",url: "ContactusPage" },
+          { title: "Contact HAUL",url: "contactus" },
           { title: "Change Password",  url: "ChangepasswordPage" },
         ];
 
       }
       else{
         this.services = [
-          { title: '<span class="big-font">Labor Only</span>', pagetitle: 'Labor Only', icon: 'assets/imgs/pic2.jpg', id:'16',url:"TruckonlyPage"},
-          { title: '<span class="big-font">Item Delivery</span>', pagetitle: 'Item Delivery', icon: 'assets/imgs/pic3.png', id:'18',url:"PickupPage"},
-          { title: '<span class="big-font">Junk Removal</span>', pagetitle: 'Junk Removal', icon: 'assets/imgs/pic4.jpg', id:'23',url:"SmallmovePage"},
-          { title: '<span class="big-font">Full Move</span>', pagetitle: 'Residential or Commercial', icon: 'assets/imgs/pic5.jpg', id:'17',url:"MovePage"},
-          { title: '<span class="big-font">Donation Item (FREE!)</span>', pagetitle: 'Charity and Donation Pickup', icon: 'assets/imgs/heart.png', id:'19',url:"CharitablePage"},
+          { title: '<span class="big-font">Labor Only</span>', pagetitle: 'Labor Only', icon: 'assets/imgs/pic2.jpg', id:'16',url:"truckonly"},
+          { title: '<span class="big-font">Item Delivery</span>', pagetitle: 'Item Delivery', icon: 'assets/imgs/pic3.png', id:'18',url:"pickup"},
+          { title: '<span class="big-font">Junk Removal</span>', pagetitle: 'Junk Removal', icon: 'assets/imgs/pic4.jpg', id:'23',url:"smallmove"},
+          { title: '<span class="big-font">Full Move</span>', pagetitle: 'Residential or Commercial', icon: 'assets/imgs/pic5.jpg', id:'17',url:"move"},
+          // { title: '<span class="big-font">Donation Item (FREE!)</span>', pagetitle: 'Charity and Donation Pickup', icon: 'assets/imgs/heart.png', id:'19',url:"CharitablePage"},
         ];
       this.menurole='customer';
 
@@ -253,9 +253,9 @@ export class WalkthroughPage implements OnInit {
       this.nav.navigateForward("vendorsignup"); 
     }
   
-    // openFAQ(){
-    //   this.nav.push(FaqPage); 
-    // }
+    openFAQ(){
+      this.nav.navigateForward("faq"); 
+    }
   
     // openWorkOrders(){
     //   this.nav.push(OrderlistPage); 
@@ -270,6 +270,11 @@ export class WalkthroughPage implements OnInit {
       this.nav.navigateForward(service.url,{queryParams:{
         service: service
       }});
+    }
+    openPage(page) {
+      // close the menu when clicking a link from the menu
+      this.menu.close();
+      this.nav.navigateForward(page.url);
     }
     charitable(){
       let service={ title: '<span class="big-font">Donation Item (FREE!)</span>', pagetitle: 'Charity and Donation Pickup', icon: 'assets/imgs/heart.png', id:'19',url:"charitable"}

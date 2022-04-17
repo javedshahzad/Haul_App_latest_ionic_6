@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-icon name="arrow-back" (click)="back()" style="font-size: 20px; margin-left: 10px;" slot="start"></ion-icon>
+    <ion-title>Haul</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="teal-bg" [class.trans-head2]="isLoggedin">
+  <div>
+    <ion-grid padding class="readme">
+      <ion-row>
+        <ion-col size="12">
+          <h2>WELCOME</h2>
+          <br>
+          <p class="white-txt">Thank You for becoming an affiliate of HAUL.  The following guide will take you through the step by step process to setting up your personal Vendor Portal Services.</p>
+
+          <span><h5>Our Mission</h5>To bring clients to Moving Service Providers utilizing client video to reduce time required to facilitate a transaction. </span>
+
+          <span><h5>What does Haul Do?</h5>Haul provides an innovated platform to reaching out to customer in search for Moving Services.  Passing out business cards is a thing of the past.  When is the last time you rented a video cassette or a dvd from a movie rental company?  When is the last time you purchased a CD from a store? <br><br> 
+
+          <p>Haul creates a platform for Customers to reach Vendors in a way that has never been done before.  It allows customers to capture video of their moving projects and send them directly to Moving Service Providers.  This eliminates the need to visit potential customers.  We also extend from traditional moving services and offer item delivery as well as labor only services.</p>  
+          </span>
+
+          <span><h5>What can I sign up for?</h5>
+          <p>We offer Labor Only, Item Delivery, Small / Full Moves.  You can sign up for all or just one service.  Most popular services are Labor Only and Item Delivery.</p> 
+          </span>
+
+          <span><h5>HAUL Fee's</h5>
+          <p>Signing up to become an affiliate of HAUL is completely FREE.  We invite you to fill out a Service Provider Profile and complete the on boarding process.  When a transaction does occur, HAUL will charge a 15% service transaction fee for any Work Orders complete.  The fee can be adjusted based on Volume and feedback rating system.</p> 
+          </span>
+
+          <span><h5>Who’s responsible for the loads?</h5>
+          <p>Different service levels have different levels of responsibility.  However, understand that if you damage anything you can be held liable.  Please carry the appropriate insurances for each service that you will offer through HAUL.  Some documentation may need to verified prior to being listed in HAUL.</p> 
+          </span>
+
+          <span><h5>Do you collect Taxes?</h5>
+          <p>We do not collect Taxes nor report any earning to the government, however it is your responsibility to file earning in accordance to your local Tax Codes.</p> 
+          </span>
+
+          <span><h5>HAUL Customer Feedback</h5>
+          <p>Each customer will have the opportunity to provide feedback on the level of service provided.  5 Star ratings are the best.  Be prompt, be courteous.</p> 
+          </span>
+
+          <span><h4>Portal Navigation Buttons</h4></span>
+
+          <span><h5>Customer Messages-  </h5>Communicate with your customer about the work order.</span>
+
+          <span><h5>Work Order -  </h5>View all pertinent information pertaining to the customer request.  You will have the ability accept, reject, or counter a price.</span>
+
+          <span><h5>Resources -  </h5>Information to assist with any Vendor services offered.  Legal Documentation can be accessed here.</span>
+
+          <span><h5>Account Settings -  </h5>Personal information associated with your account.  Contact Name, Banking information, legal documentation.</span>
+
+          <span><h5>Service Provider Portal -  </h5>Set your service area as well as manage the appearance of your web profile.</span>
+
+          <span><h5>Manage Moving Services -  </h5>Select which service you offer to your customers.  Details are provided for each service offered.  Toggle Click Active / Inactive to turn on / off a service.</span>
+
+          <p>Additional Questions?  Visit our FAQ Page via Haulonline.com</p>
+
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-button  expand="block" class="form-action-button create-post-button" type="submit" (click)="vendorAccountLink()">Click to Continue to Account Setting</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </div>
+</ion-content>

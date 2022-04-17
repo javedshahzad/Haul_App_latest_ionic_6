@@ -16,11 +16,11 @@ import { InstructionsPage } from '../instructions/instructions.page';
 
 
 @Component({
-  selector: 'app-smallmovepic',
-  templateUrl: './smallmovepic.page.html',
-  styleUrls: ['./smallmovepic.page.scss'],
+  selector: 'app-pickup-item',
+  templateUrl: './pickup-item.page.html',
+  styleUrls: ['./pickup-item.page.scss'],
 })
-export class SmallmovepicPage implements OnInit {
+export class PickupItemPage implements OnInit {
   section: string;
   video_form: FormGroup;
   event_form: FormGroup;
@@ -82,9 +82,9 @@ export class SmallmovepicPage implements OnInit {
       description: new FormControl(),
     });
 
-    this.du = true;
-    this.photos = [];
-    this.filenames = [];
+    // this.du = true;
+    // this.photos = [];
+    // this.filenames = [];
   }
   async mediaData(){
     let form_data = this.video_form.value;
@@ -160,7 +160,7 @@ export class SmallmovepicPage implements OnInit {
     }
     else{
 
-      this.wordpressService.createSmallMove(this.photos,form_data,form_data1,vendor_id)
+      this.wordpressService.createPickupDelivery(this.photos,form_data,form_data1,'0')
       .subscribe(async res => {
         console.log(res);
         this.util.dismisloading()

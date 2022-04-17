@@ -192,13 +192,13 @@ export class SmallmovePage implements OnInit {
 
   hourincrease() {
     this.counterValueHour++;
-    this.post_form.controls['from_inside_stairs'].setValue(this.counterValue)
+    this.post_form.controls['from_inside_stairs'].setValue(this.counterValueHour)
   }
 
   hourdecrease() {
     if(this.counterValueHour>0){
       this.counterValueHour--;
-      this.post_form.controls['from_inside_stairs'].setValue(this.counterValue)
+      this.post_form.controls['from_inside_stairs'].setValue(this.counterValueHour)
     }
   }
   back(){

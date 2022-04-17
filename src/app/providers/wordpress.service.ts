@@ -26,8 +26,7 @@ export class WordpressService {
     //let category_url = categoryId? ("&categories=" + categoryId): "";
     return this.http.get(
       environment.wordpress_rest_api_url
-      + 'special_item?_embed&orderby=modified')
-    .subscribe(res => res);
+      + 'special_item?_embed&orderby=modified');
   }
 
   getPopularPosts(categoryId:number, page:number = 1){

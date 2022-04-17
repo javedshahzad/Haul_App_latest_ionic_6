@@ -5,20 +5,18 @@
   Ionic pages and navigation.
 -->
 <ion-header *ngIf="isLoggedin == false" class="ion-no-border">
-  <ion-toolbar hideBackButton="true">
-    <button (click)="openMenu(menurole)" class="menu_button" [hidden]="isVendor">
+  <ion-toolbar>
+    <button (click)="openMenu('customer-menu')" class="menu_button" [hidden]="isVendor">
       <ion-icon name="menu"  class="menu_icon"></ion-icon>
     </button> 
   </ion-toolbar>
 
 </ion-header>
 
-<ion-header [class.trans-head]="isLoggedin" *ngIf="isLoggedin == true" class="ion-no-border">
-
+<ion-header *ngIf="isLoggedin == true" class="ion-no-border">
   <ion-toolbar>
       <button (click)="openMenu('quick-menu')" class="menu_button"><ion-icon name="menu" class="menu_icon"></ion-icon></button>
   </ion-toolbar>
-
 </ion-header>
 
 <!-- <ion-content [class.trans-head2]="isLoggedin" >
@@ -45,13 +43,16 @@
         <h4 class="h-heading">Haul Service Provider Portal</h4>
         <h5 class="h-border">Navigation</h5>
         <ion-list>
-          <button class="leftbtn" ion-item *ngFor="let pv of pagesV" (click)="openPage(pv)">
-            {{pv.title}}
-          </button>
-    
-          <button class="leftbtn" ion-item  (click)="logOut()">
-          Sign Out
-          </button>
+          <ion-item class="leftbtn"  *ngFor="let pv of pagesV" (click)="openPage(pv)">
+            <ion-button expand="block">
+              {{pv.title}}
+            </ion-button>
+          </ion-item>
+          <ion-item>
+            <ion-button class="leftbtn" expand="full" (click)="logOut()">
+              Sign Out
+              </ion-button>
+          </ion-item>
     
         </ion-list>
     </div>
@@ -86,26 +87,20 @@
                   <button ion-button full class="service_login" (click)="contactUs()"  *ngIf="isLoggedin == true">Contact <br> Us</button>
                 </div>  
               </ion-col>  
+              <ion-col size="12" class="btn_hub" *ngIf="isLoggedin == false">
+                <div class="btm-tab1">
+                  <button ion-button full class="service_registration" (click)="openCustMsg()" >Message<br> Provider</button>
+                  <button ion-button full class="service_registration" (click)="openWorkOrders()">Work<br>Orders</button>
+                  <button ion-button full class="service_registration" (click)="openFAQ()">FAQs <br></button>
+                  <button ion-button full class="service_registration" (click)="contactUs()">Contact<br>Us</button>
+                </div>  
+              </ion-col>  
             </ion-row>
           </ion-grid>
     
     <div class="signin-form-section">
 
     <ion-grid>
-    <ion-row class="btn-tab2" *ngIf="isLoggedin == false">
-      <ion-col size="5">
-        <button ion-button full class="service_registration" (click)="openCustMsg()" >Message Provider</button>
-      </ion-col>
-      <ion-col size="3">
-        <button ion-button full class="service_registration" (click)="openWorkOrders()">Work Orders</button>
-      </ion-col>
-      <ion-col size="2">
-        <button ion-button full class="service_registration" (click)="openFAQ()">FAQ</button>
-      </ion-col>
-      <ion-col size="2">
-        <button ion-button full class="service_registration" (click)="contactUs()">Contact</button>
-      </ion-col>
-    </ion-row>  
  <ion-row>
    <ion-col size="6" *ngFor="let service of services" (click)="doSignup(service)">
     <div class="blue-box">
