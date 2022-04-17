@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-icon name="arrow-back" (click)="back()" style="font-size: 23px; margin: 5px;"></ion-icon>
+    <ion-title>Haul</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="forms-examples-content">
+  <img src="assets/imgs/charity.jpeg" />
+  <h1>{{service.pagetitle}}</h1>
+  <div padding class="no_style">
+  <p>
+      Haul partners with local charities to have your items collected from your space.  Give generously and give often is our message.We make it easy all in one simple step.  
+  </p>
+  <ul class="before_line">
+    <li><ion-icon name="checkmark"></ion-icon> Snap a picture and we will get it out of your space</li>
+    <li><ion-icon name="checkmark"></ion-icon> Customer Receipts provided</li>
+    <li><ion-icon name="checkmark"></ion-icon> We will cover someone coming to get it</li>
+  </ul>
+</div>
+
+<div [ngSwitch]="section" class="forms-wrapper">
+  <div *ngSwitchCase="'post'" class="post-example-view">
+    <form class="sample-form post-form" [formGroup]="post_form" (ngSubmit)="nextItemPage()">
+
+      <ion-input type="hidden" formControlName="userid" [(ngModel)]="userId"></ion-input>
+      <ion-input type="hidden" formControlName="name" [(ngModel)]="userName"></ion-input>
+      <ion-input type="hidden" formControlName="email" [(ngModel)]="userEmail"></ion-input>
+      <ion-input type="hidden" formControlName="phone_number" [(ngModel)]="userPhone"></ion-input>
+      <ion-input type="hidden" formControlName="password" value=""></ion-input>
+      &nbsp;
+      <ion-grid class="post-example-view">
+          
+       <ion-row>
+         <ion-col size="12">Service Address: <span class="red-required"><sup>*</sup></span></ion-col>
+         <ion-col size="12" class="input-bg">
+           <ion-searchbar class="counter-item"
+           [(ngModel)]="autocomplete.query"
+           (ionInput)="updateSearch()"
+           formControlName="pickup_address"
+           placeholder="Service Address">
+           </ion-searchbar>
+           <ion-list class="placelist">
+           <ion-item *ngFor="let item of autocompleteItems" (click)="chooseItem(item)">
+           {{ item.description }}
+           </ion-item>
+           </ion-list>
+         </ion-col>
+       </ion-row>
+       <p *ngIf="post_form.controls['pickup_address'].errors && post_form.controls['pickup_address'].dirty" class="danger" padding>Please enter the service address.</p>
+
+       <ion-row>
+         <ion-col size="5"><label>Category Type:<span class="red-required"><sup>*</sup></span></label> </ion-col>
+         <ion-col size="7" class="input-bg">
+           <ion-select placeholder="Category Type" formControlName="type_of_item" class="counter-item">
+             <ion-label>Category Type:</ion-label>
+             <ion-select-option value="furniture">Furniture</ion-select-option>
+             <ion-select-option value="kitchen">Kitchen</ion-select-option>
+             <ion-select-option value="electronics">Electronics</ion-select-option>
+           </ion-select>
+         </ion-col>
+       </ion-row>
+       <p *ngIf="post_form.controls['type_of_item'].errors && post_form.controls['type_of_item'].dirty" class="danger">Please select the category type.</p>
+
+     </ion-grid>
+
+    <section class="form-section">
+      <ion-button expand="block" color="dark" class="form-action-button create-post-button" type="submit" [disabled]="!post_form.valid" >Next</ion-button>
+    </section>
+
+  </form>
+</div>
+</div>
+</ion-content>

@@ -1,0 +1,126 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-icon name="arrow-back" (click)="back()" style="font-size: 23px; margin: 5px;"></ion-icon>
+    <ion-title>Haul</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="forms-examples-content">
+  <!--    <ion-segment class="forms-examples-segment" [(ngModel)]="section" (ionChange)="onSegmentChanged($event)">
+<ion-segment-button value="post" (ionSelect)="onSegmentSelected($event)">
+    Information
+  </ion-segment-button>
+
+  </ion-segment>-->
+  <h1>Service Provider Registration</h1>
+
+  <ion-row class="tmar">
+      <ion-col size="12">
+          <img src="./assets/imgs/haul-logo1.png" class="top-logo">
+      </ion-col>  
+    </ion-row>
+
+      <form class="sample-form post-form" [formGroup]="post_form" (ngSubmit)="createVendors()">
+
+        <ion-grid class="vendor_signup">
+
+          <ion-row>
+            <ion-col size="12">
+              <p class="pp1">Signing up is Free!</p>
+              <p class="pp2"><span>KEEP 85%</span> of Total Work Order.</p>
+              <p class="pp3">We are currently accepting Moving Service Providers affiliate for HAULonline.com.  Please take the first steps below and tell us a little bit about your organization.  Your affiliate service provider company will be reviewed and we will get to you promptly. </p>
+            </ion-col>  
+          </ion-row>
+
+          <ion-row>
+            <ion-col size="12">
+                <p>Email:</p>
+                <ion-input type="email" placeholder="Email" formControlName="email"></ion-input>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col size="12">
+                <p>Password:</p>
+                <ion-input type="password" placeholder="Password" formControlName="password" show-hide-input></ion-input>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col size="12">
+                <p>First Name:</p>
+                <ion-input type="text" placeholder="First Name" formControlName="firstname"></ion-input>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col size="12">
+                <p>Last Name:</p>
+                <ion-input type="text" placeholder="Last Name" formControlName="lastname"></ion-input>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col size="12">
+                <p>Service Provider Name:</p>
+                <ion-input type="text" placeholder="Service Provider Name" formControlName="service_provider" ></ion-input>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col size="12">
+                <p>Service Provider Description:</p>
+                <ion-textarea class="desc-height" placeholder="Service Provider Description" formControlName="provider_description" ></ion-textarea>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col size="12">
+                <p>Service Address:</p>
+                <ion-searchbar
+                [(ngModel)]="autocomplete.query"
+                [showCancelButton]="false"
+                (ionInput)="updateSearch()"
+                formControlName="address"
+                placeholder="Address">
+                </ion-searchbar>
+                <ion-list class="placelist">
+                <ion-item *ngFor="let item of autocompleteItems" (click)="chooseItem(item)">
+                {{ item.description }}
+                </ion-item>
+                </ion-list>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col size="12">
+                <p>Service Radius:</p>
+                <ion-select placeholder="Mileage Radius" formControlName="mileage_radius" >
+                <ion-label>Select Mileage Radius</ion-label>
+                <ion-select-option value="10">10 Miles</ion-select-option>
+                <ion-select-option value="20">20 Miles</ion-select-option>
+                <ion-select-option value="30">30 Miles</ion-select-option>
+                <ion-select-option value="40">40 Miles</ion-select-option>
+                <ion-select-option value="50">50 Miles</ion-select-option>
+                <ion-select-option value="100">100 Miles</ion-select-option>
+                <ion-select-option value="200">200 Miles</ion-select-option>
+                <ion-select-option value="300">300 Miles</ion-select-option>
+                <ion-select-option value="400">400 Miles</ion-select-option>
+                <ion-select-option value="500">500 Miles</ion-select-option>
+              </ion-select>
+            </ion-col>
+          </ion-row>
+
+        </ion-grid>
+
+        <section class="form-section sign_check" padding>
+         
+          <ion-checkbox formControlName="accept_tnc" mode="md"></ion-checkbox><label class="tnc_label">Click here to indicate that you have read and agree to the <a (click)="openTnc();">Service Provider agreement.</a></label>
+        </section>
+
+        <section class="form-section register_btn">
+          <ion-button expand="full" class="form-action-button create-post-button" type="submit" [disabled]="!post_form.valid">Register</ion-button>
+        </section>
+        <p>&nbsp;</p>
+      </form>
+</ion-content>

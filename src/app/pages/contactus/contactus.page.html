@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-icon name="arrow-back" (click)="back()" style="font-size: 23px; margin: 5px;"></ion-icon>
+    <ion-title>Contact Haul</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <form class="sample-form post-form" [formGroup]="contact_form" (ngSubmit)="contactHaul()">
+      <section class="form-section" [innerHTML]="show_msg" *ngIf="show_msg!=''"></section>
+      
+    <section class="form-section">
+      
+      <ion-item>
+        <p class="tocontact"><strong>To: </strong>admin@haulonline.com</p>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">From</ion-label>
+        <ion-input formControlName="sender_email" [(ngModel)]="senderEmail"></ion-input>
+      </ion-item>
+      <p *ngIf="contact_form.controls['sender_email'].errors && contact_form.controls['sender_email'].dirty" class="danger">Please enter your email address.</p>
+
+      <ion-item>
+        <ion-label position="floating">Subject</ion-label>
+        <ion-input formControlName="subject" ></ion-input>
+      </ion-item>
+      <p *ngIf="contact_form.controls['subject'].errors && contact_form.controls['subject'].dirty" class="danger">Please enter the subject.</p>
+
+      <ion-item>
+        <ion-label position="floating">Name</ion-label>
+        <ion-input formControlName="sender_name" [(ngModel)]="senderName"></ion-input>
+      </ion-item>
+      <p *ngIf="contact_form.controls['sender_name'].errors && contact_form.controls['sender_name'].dirty" class="danger">Please enter your name.</p>
+
+
+      <ion-item>
+        <ion-label position="floating">Contact Number</ion-label>
+        <ion-input formControlName="contact_number"></ion-input>
+      </ion-item>
+      <p *ngIf="contact_form.controls['contact_number'].errors && contact_form.controls['contact_number'].dirty" class="danger">Please enter your contact number.</p>
+      
+
+      <ion-item>
+        <ion-label position="floating">Message</ion-label>
+        <ion-textarea class="msg" formControlName="message" rows="10"></ion-textarea>
+      </ion-item>
+      <p *ngIf="contact_form.controls['message'].errors && contact_form.controls['message'].dirty" class="danger">Please enter a message.</p>
+
+    </section>
+
+    <section class="form-section">
+      <ion-button expand="full" class="form-action-button create-post-button" type="submit" [disabled]="!contact_form.valid">Send</ion-button>
+    </section>
+
+    
+  </form>
+</ion-content>

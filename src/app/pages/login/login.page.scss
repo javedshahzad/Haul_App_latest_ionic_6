@@ -1,0 +1,251 @@
+
+	.login-content
+	{
+		.alt-options
+		{
+			.button
+			{
+				margin: 0px;
+				padding: 0px;
+				font-size: 1.4rem;
+			}
+
+			.forgot-button
+			{
+				color:#fff;
+
+				.button-inner
+				{
+					justify-content: flex-start;
+				}
+			}
+
+			.signup-button
+			{
+				font-weight: 500;
+				color: #0080ff;;
+
+				.button-inner
+				{
+					justify-content: flex-end;
+				}
+			}
+		}
+	}
+	.red-btn{
+		color: #fff !important;
+    background-color: #f4344f !important;
+    margin: 0px auto !important;
+    border-radius: 50px!important;
+	}
+	.login-form {
+    margin-bottom: 15px;
+    text-align: center;
+	}
+.login-bg {
+    --background: url(../../../assets/imgs/custo.png);
+    background-size: 100% 117%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.top-logo{
+    margin: 0 auto;
+    display: block;
+    padding: 16px 0px 34px 0px;
+    width: 80px;
+}
+a.forgot {
+    color: #fff;
+    text-decoration: none;
+}
+.signin-form-section .list{
+	margin-bottom: 10px;
+}
+.signin-form-section .item-input ion-label{
+	width: 100%;
+    text-align: center;
+    max-width: 100%;
+}
+.signin-form-section .list > .item-block{
+	border: 1px solid #e6e6e6;
+    max-width: 80%;
+    margin: 0 auto 15px;
+    border-radius: 50px;
+    background-color: white;
+}
+.signin-form-section .list > .item-block:first-child{
+	border: 1px solid #e6e6e6;
+
+}
+.signin-form-section .list .item-block .item-inner{
+	border:none;
+}
+.signin-form-section button{
+	// width: 80%;
+    // margin: 0 auto;
+    // display: block;
+    // border-radius: 50px;
+    // font-size: 20px;
+    // padding: 15px 10px;
+    // font-weight: normal;
+    // text-transform: uppercase;
+    // margin-top: 30px;
+    // background: #f00;
+    // color: #fff;
+    // text-transform: uppercase;
+    margin: 0px;
+    margin-top: 20px;
+    padding: 12px;
+    width: 100%;
+    border-radius: 6px;
+    color: #FFFFFF;
+    background-color: #0080ff;
+    font-size: 1.6rem;
+    font-weight: 500;
+}
+.top-txt{
+    font-size: 50px;
+    font-weight: 800;
+    margin: 0px;
+}
+.bot-txt{
+    margin: 0px;
+    font-size: 20px;
+    font-weight: 600;
+}
+.register-btn{
+    max-width: 80%;
+    height: auto!important;
+    border-radius: 10px !important;
+    border: 3px solid #fff;
+    text-align: center;
+    padding: 10px;
+    background-color: #ff0000!important;
+}
+.signin-form-btm {
+	text-align: center;
+	padding: 10px 0px;
+}
+.signin-form-btm span.border-mid{
+    border-top: 1px solid #fff;
+    display: block;
+    max-width: 80%;
+    margin: 0 auto;
+    position: relative;
+    top: -31px;
+    z-index: 0;
+}
+.signin-form-btm p{
+	display: inline-block;
+    background-color: #007aff;
+    z-index: 1;
+    padding: 0px 10px;
+    color: #fff;
+    font-size: 20px;
+    z-index: 99;
+    position: relative;
+}
+.bottm-link{
+	color: #fff;
+    display: block;
+    text-align: center;
+    padding: 20px 0px 5px;
+    font-size: 18px;
+}
+.signin-form-section input {
+    text-align: left;
+    font-size:20px;
+    text-indent: 11px;
+}
+// .signin-form-section {
+//     background-color: #0080ff;
+//     border: 1px solid #ddd;
+//     width: 100%;
+//     border-radius: 25px;
+// }
+.signin-form-section {
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    border-radius: 0px;
+}
+.signin-form-section h3 {
+	// color: #fff;
+	// text-align: center;
+	// padding: 20px 0px 10px 0px;
+    // font-size: 24px;
+    font-size: 1.8rem;
+    line-height: 1.2;
+    letter-spacing: 1.1px;
+    text-align: center;
+    color: #fff;
+    font-weight: 400;
+    margin: 0px;
+}
+.show-hide-password .item {
+    max-width: 80%;
+    margin: 0 auto 15px;
+    border-radius: 50px;
+    background-color: white;
+}
+.show-hide-password .type-toggle {
+    right: 45px;
+}
+.scroll-content {
+    padding-top: 0px !important;
+}
+input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  text-indent: 11px!important;
+}
+input::-moz-placeholder { /* Firefox 19+ */
+  text-indent: 11px!important;
+}
+input:-ms-input-placeholder { /* IE 10+ */
+  text-indent: 11px!important;
+}
+input:-moz-placeholder { /* Firefox 18- */
+  text-indent: 11px!important;
+}
+.toolbar-background {
+    background-color: transparent!important;
+}
+// .auth-content .auth-form ion-item.item {
+//     padding: 0px;
+//     background-color: #f7f7f7;
+//     border: 1px solid #e6e6e6;
+//     max-width: 80%;
+//     margin: 0 auto 15px;
+//     border-radius: 50px;
+//     background-color: white;
+// }
+.auth-content .auth-form ion-item.item {
+    padding: 0px;
+    background-color: #f7f7f7;
+    border: 1px solid #e6e6e6;
+    max-width: 100%;
+    margin: 20px auto 15px;
+    border-radius: 0;
+    background-color: white;
+    border: 1px solid #01bfff !important;
+    max-height: 44px;
+}
+.auth-content .scroll-content {
+    padding: 16px 4%;
+}
+
+.list-md {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    /* background: var(--ion-item-background, var(--ion-background-color, #fff)); */
+}
+.icon{
+    color: #fff;
+    margin: 15px;
+    font-size: 20px;
+}

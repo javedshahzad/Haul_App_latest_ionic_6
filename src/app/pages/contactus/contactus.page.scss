@@ -1,0 +1,38 @@
+
+    p{
+        overflow: inherit;
+        font-size: 1.4rem;
+        line-height: normal;
+        text-overflow: inherit;
+        color: #333!important;
+    }
+    .p-err{
+        padding: 5px;
+        width: 100%;
+        color: rgb(185, 49, 49)!important;
+        background-color: rgb(253, 220, 215);
+        border-radius: 20px;
+        border: 1px solid rgb(222, 187, 187)!important;
+        text-align: center;
+    }
+    .p-succ{
+        padding: 5px;
+        width: 100%;
+        color: #55715d!important;
+        background-color: #b9e2d4;
+        border-radius: 20px;
+        border: 1px solid #9fd8ad !important;
+        text-align: center;
+    }
+    .tocontact{
+        font-size: 18px;
+    }
+    .danger{
+        margin-left: 15px;
+    }
+    .msg{
+        height: 150px;
+    }
+    ion-icon.back-button-icon {
+          color: #fff !important;
+    }

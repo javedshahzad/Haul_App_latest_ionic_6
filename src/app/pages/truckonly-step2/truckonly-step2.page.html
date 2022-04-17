@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title (click)="closeModal()">Back</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="forms-examples-content login-bg">
+<img src="./assets/imgs/haul-logo.png" class="top-logo">
+  <div class="signin-form-section top-space">
+    <form class="sample-form post-form" [formGroup]="register" (ngSubmit)="doRegisterCreateOrder()">
+      <br />
+      <section class="form-section">
+        <h2 class="section-title">Login</h2>
+   
+
+
+        <ion-item lines="none">
+          <ion-input type="text" placeholder="Email" formControlName="email"></ion-input>
+        </ion-item>
+
+
+        <ion-item lines="none">
+          <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
+        </ion-item>
+  
+    </section>
+
+    <p class="forgot" (click)="goToForgotPassword()">Forgot Password ?</p>
+
+
+    <section class="form-section">
+      <ion-button color="primary" expand="full" type="submit" [disabled]="!register.valid" (click)="doLogin()">Sign in</ion-button>
+    </section>
+
+    </form>
+</div>
+</ion-content>

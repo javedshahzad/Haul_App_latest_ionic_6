@@ -1,0 +1,35 @@
+
+
+<ion-content class="login-content auth-content login-bg">
+  <ion-icon name="arrow-back-outline" class="icon" (click)="back()"></ion-icon>
+<img src="assets/imgs/haul-logo.png" class="top-logo">
+
+<div class="signin-form-section" style="padding: 0px 14px;">
+  <h3 *ngIf="isCustomer == true">Customer Login</h3>
+  <h3 *ngIf="isCustomer == false">Service Provider Login</h3>
+  <form class="login-form auth-form" [formGroup]="login" (ngSubmit)="doLogin()">
+
+
+  <ion-item>
+    <ion-input type="email" placeholder="Email" formControlName="email"></ion-input>
+  </ion-item>
+
+  <show-hide-container>
+      <ion-item>
+        <ion-input type="password" placeholder="Password" formControlName="password" show-hide-input></ion-input>
+      </ion-item>
+  </show-hide-container>
+
+ 
+  <a  class="forgot" (click)="goToForgotPassword()">Forgot Password ?</a>
+  <ion-button color="primary" expand="full" type="submit" [disabled]="!login.valid" (click)="doLogin()">Sign in</ion-button>
+  <!-- <button block [disabled]="!login.valid">Sign In</button> -->
+  </form>
+
+    <div class="red-btn register-btn" color="danger" *ngIf="isCustomer == false" (click)="goToVendorSignup()">
+        <p class="top-txt">haul</p>
+        <p class="bot-txt">Service Provider <br>Registration</p> 
+    </div>
+   &nbsp;
+  </div>
+</ion-content>

@@ -1,0 +1,10 @@
+{
+  "name": "Haul_App_latest_ionic_6",
+  "integrations": {
+    "capacitor": {
+      "enabled": false
+    },
+    "cordova": {}
+  },
+  "type": "angular"
+}

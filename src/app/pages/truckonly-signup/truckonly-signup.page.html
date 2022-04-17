@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title (click)="closeModal()">Back</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="forms-examples-content login-bg">
+<img src="./assets/imgs/haul-logo.png" class="top-logo">
+  <div class="signin-form-section top-space">
+    <form class="sample-form post-form" [formGroup]="register" (ngSubmit)="doRegisterCreateOrder()">
+      <br />
+      <section class="form-section">
+        <h2 class="section-title">SIGN UP</h2>
+   
+
+        <ion-item lines="none">
+          <ion-input type="text" placeholder="Name" formControlName="name"></ion-input>
+        </ion-item>
+
+        <ion-item lines="none">
+          <ion-input type="text" placeholder="Email" formControlName="email"></ion-input>
+        </ion-item>
+
+        <ion-item lines="none">
+          <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
+        </ion-item>
+
+        <ion-item lines="none">
+          <ion-input type="password" placeholder="Confirm Password" formControlName="confirm_password"></ion-input>
+        </ion-item>
+
+        <ion-item lines="none">
+          <ion-input type="text" placeholder="Phone Number" formControlName="phone_number"></ion-input>
+        </ion-item>
+
+  
+    </section>
+
+    &nbsp;
+    <section class="form-section sign_check" padding>
+      <ion-checkbox formControlName="accept_tnc" mode="md"></ion-checkbox><label class="tnc_label">Check here to indicate that you have read and agree to the <a href="#" (click)="openTnc();">Customer Terms Of Service</a></label>
+    </section>
+
+
+    <section class="form-section">
+      <ion-button color="primary" expand="full" type="submit" [disabled]="!register.valid" (click)="doLogin()">Sign in</ion-button>
+    </section>
+
+    </form>
+</div>
+</ion-content>

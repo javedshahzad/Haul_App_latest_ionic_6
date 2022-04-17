@@ -1,0 +1,118 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-icon name="arrow-back" (click)="back()" style="font-size: 23px; margin: 5px;"></ion-icon>
+    <ion-title>Haul</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="forms-examples-content">
+
+  <img src="assets/imgs/labour-only.png" class="ipad"/>
+  <h1>{{service.pagetitle}}</h1>
+  <p padding class="form-text">You have enough to worry about.  Get all the muscle you need to complete your next moving project.  Loading or unloading?  Maybe just rearranging a space?  We have you covered!</p>
+  <ul>
+    <li><ion-icon name="checkmark"></ion-icon> Fixed price quotes from local Moving Providers</li>
+    <li><ion-icon name="checkmark"></ion-icon> Hire local movers to load / unload your Truck</li>
+    <li><ion-icon name="checkmark"></ion-icon> No Back aches, No Problem</li>
+  </ul>
+
+  <div [ngSwitch]="section" class="forms-wrapper">
+    <div *ngSwitchCase="'post'" class="post-example-view" padding>
+      <form class="sample-form post-form" [formGroup]="post_form" (ngSubmit)="createNoTruckVendors()">
+
+        <ion-input type="hidden" formControlName="userid" [(ngModel)]="userId"></ion-input>
+        <ion-input type="hidden" formControlName="name" [(ngModel)]="userName"></ion-input>
+        <ion-input type="hidden" formControlName="email" [(ngModel)]="userEmail"></ion-input>
+        <ion-input type="hidden" formControlName="phone_number" [(ngModel)]="userPhone"></ion-input>
+        <ion-input type="hidden" formControlName="password" value=""></ion-input>
+
+        <ion-grid>
+          <ion-row>
+            <ion-col size="12">
+                <p class="heading text-left">Service Address: <span class="red-required"><sup>*</sup></span></p>
+            </ion-col>
+            <ion-col size="12" class="input-bg">
+                <ion-searchbar class="counter-item"
+                [(ngModel)]="autocomplete.query"
+                (ionInput)="updateSearch()"
+                formControlName="service_address"
+                placeholder="Service Address">
+                </ion-searchbar>
+                <ion-list class="placelist">
+                <ion-item *ngFor="let item of autocompleteItems" (click)="chooseItem(item)">
+                {{ item.description }}
+                </ion-item>
+                </ion-list>
+            </ion-col>
+          </ion-row>
+          <p *ngIf="post_form.controls['service_address'].errors && post_form.controls['service_address'].dirty" class="danger">Please enter the service address.</p>
+
+          <ion-row>
+            <ion-col size="5">
+                <p class="padding_left">Service date: <span class="red-required"><sup>*</sup></span></p>
+            </ion-col>
+            <ion-col size="7" class="input-bg">
+              <ion-input class="counter-item" type="date" placeholder="Service Date" formControlName="date_of_service"></ion-input>
+            </ion-col>
+          </ion-row>
+          <p *ngIf="post_form.controls['date_of_service'].errors && post_form.controls['date_of_service'].dirty" class="danger">Please select the service field.</p>
+
+          <ion-row>
+            <ion-col size="5">
+                <p class="padding_left">Time of Day: <span class="red-required"><sup>*</sup></span></p>
+            </ion-col>
+            <ion-col size="7" class="input-bg">
+              <ion-select placeholder="Time of day" formControlName="time_of_day" class="counter-item">
+                <ion-select-option value="morning">Morning</ion-select-option>
+                <ion-select-option value="afternoon">Afternoon</ion-select-option>
+                <ion-select-option value="evening">Evening</ion-select-option>
+              </ion-select>
+            </ion-col>
+          </ion-row>
+          <p *ngIf="post_form.controls['time_of_day'].errors && post_form.controls['time_of_day'].dirty" class="danger">Please select the time of day.</p>
+
+          <ion-row>
+            <ion-col size="5">
+                <p class="padding_left">Helpers Requested: <span class="red-required"><sup>*</sup></span></p>
+            </ion-col>
+            <ion-col size="7" class="input-bg counter_n">
+              <ion-item class="counter-item ion-text-center">
+                <ion-button color="light" (click)="helpdecrease()">
+                  <ion-icon name="remove" ></ion-icon>
+                </ion-button>
+                <span class="counter-inner ion-text-center">{{counterValue}}</span>
+                <ion-button color="light" (click)="helpincrease()">
+                  <ion-icon name="add"></ion-icon>
+                </ion-button>
+            </ion-item>
+            </ion-col>
+          </ion-row>
+          <p *ngIf="post_form.controls['required_helpers'].errors && post_form.controls['required_helpers'].dirty" class="danger">Requested helpers must be atleast 1 or more.</p>
+
+          <ion-row class="h_request">
+            <ion-col size="5">
+                <p class="padding_left">Hours Requested: <span class="red-required"><sup>*</sup></span></p>
+            </ion-col>
+            <ion-col size="7" class="input-bg counter_n">
+              <ion-item class="counter-item ion-text-center">
+                <ion-button color="light" (click)="hourdecrease()">
+                  <ion-icon name="remove" ></ion-icon>
+                </ion-button>
+                <span class="counter-inner ion-text-center">{{counterValueHour}}</span>
+                <ion-button color="light" (click)="hourincrease()">
+                  <ion-icon name="add"></ion-icon>
+                </ion-button>
+            </ion-item>
+            </ion-col>
+          </ion-row>
+          <p *ngIf="post_form.controls['request_hours'].errors && post_form.controls['request_hours'].dirty" class="danger">Requested hours must be atleast 1 or more.</p>
+          
+        </ion-grid>
+
+          <section class="form-section">
+            <ion-button expand="block" color="dark"  type="submit" [disabled]="!post_form.valid">Submit Move Request</ion-button>
+          </section>
+      </form>
+    </div>
+  </div>
+</ion-content>
+
