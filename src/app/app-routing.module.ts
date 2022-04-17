@@ -75,6 +75,18 @@ const routes: Routes = [
     path: 'donationitem',
     loadChildren: () => import('./pages/donationitem/donationitem.module').then( m => m.DonationitemPageModule)
   },
+  {
+    path: 'smallmove',
+    loadChildren: () => import('./pages/smallmove/smallmove.module').then( m => m.SmallmovePageModule)
+  },
+  {
+    path: 'smallmovepic',
+    loadChildren: () => import('./pages/smallmovepic/smallmovepic.module').then( m => m.SmallmovepicPageModule)
+  },
+  {
+    path: 'instructions',
+    loadChildren: () => import('./pages/instructions/instructions.module').then( m => m.InstructionsPageModule)
+  },
 ];
 
 @NgModule({

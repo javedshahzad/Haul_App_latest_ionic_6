@@ -337,6 +337,7 @@ export class TruckonlyStep2Page implements OnInit {
       });  
   }
   goToForgotPassword() {
+    this.modalCtrl.dismiss();
     this.nav.navigateForward("forgot-password");
   }
 }

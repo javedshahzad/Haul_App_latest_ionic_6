@@ -16,8 +16,11 @@ import { SMS } from '@ionic-native/sms/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { Camera,  } from '@ionic-native/camera/ngx';
-import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
+import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { File } from '@ionic-native/file/ngx';
+import { VideoEditor } from '@ionic-native/video-editor/ngx';
+import { MediaCapture } from '@ionic-native/media-capture/ngx';
+
 
 @NgModule({
   declarations: [AppComponent, BasenamePipe, HidevaluePipe, KeyvaluePipe],
@@ -34,7 +37,10 @@ import { File } from '@ionic-native/file/ngx';
       SplashScreen,
       Camera,
       File,
+      FileTransferObject,
       FileTransfer,
+      VideoEditor,
+      MediaCapture,
     { provide: RouteReuseStrategy, 
       useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

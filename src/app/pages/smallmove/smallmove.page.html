@@ -1,0 +1,216 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-icon name="arrow-back" (click)="back()" style="font-size: 20px; margin-left: 10px;" slot="start"></ion-icon>
+    <ion-title>Hual</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="forms-examples-content">
+  <!--    <ion-segment class="forms-examples-segment" [(ngModel)]="section" (ionChange)="onSegmentChanged($event)">
+<ion-segment-button value="post" (ionSelect)="onSegmentSelected($event)">
+    Information
+  </ion-segment-button>
+
+  </ion-segment>-->
+  <img src="assets/imgs/smallmove.jpeg" />
+  <h1>{{service.pagetitle}}</h1>
+  <section class="form-section">
+      <ion-grid>
+  <span padding>
+    All Waste and Junk Removal services available.  Our Service Providers support both Residential & Commercial properties.
+  </span>
+  <ul class="item-points" padding>
+    <li><ion-icon name="checkmark"></ion-icon> Fully licensed and insured</li>
+    <li><ion-icon name="checkmark"></ion-icon> Local professionals have all the tools required to complete your moving project</li>
+  </ul>
+  </ion-grid>
+</section>
+  <div [ngSwitch]="section" class="forms-wrapper">
+    <div *ngSwitchCase="'post'" class="post-example-view">
+      <form class="sample-form post-form" [formGroup]="post_form" (ngSubmit)="moveNextTo()">
+
+        <section class="form-section">
+          <ion-input type="hidden" formControlName="userid" [(ngModel)]="userId"></ion-input>
+          <ion-input type="hidden" formControlName="name" [(ngModel)]="userName"></ion-input>
+          <ion-input type="hidden" formControlName="email" [(ngModel)]="userEmail"></ion-input>
+          <ion-input type="hidden" formControlName="phone_number" [(ngModel)]="userPhone"></ion-input>
+          <ion-input type="hidden" formControlName="password" value=""></ion-input>
+
+          <ion-grid>
+
+           <ion-row>
+             <ion-col size="5" class="text-right">Service Date: <span class="red-required"><sup>*</sup></span></ion-col>
+             <ion-col size="7" class="counter-item">
+               <ion-input placeholder="Service Date" type="date" formControlName="date_of_service"  displayFormat="MMM DD, YYYY" [min]="startdate" [max]="enddate"></ion-input>
+              </ion-col>
+           </ion-row>
+           <p *ngIf="post_form.controls['date_of_service'].errors && post_form.controls['date_of_service'].dirty" class="danger">Please select the service date.</p>
+
+           <ion-row>
+             <ion-col size="5" class="text-right">Time of Day: <span class="red-required"><sup>*</sup></span></ion-col>
+             <ion-col size="7" class="input-bg">
+               <ion-select placeholder="Time of day" formControlName="time_of_day" class="counter-item">
+                 <ion-label>Time of day</ion-label>
+                 <ion-select-option value="morning">Morning</ion-select-option>
+                 <ion-select-option value="afternoon">Afternoon</ion-select-option>
+                 <ion-select-option value="evening">Evening</ion-select-option>
+               </ion-select>
+             </ion-col>
+           </ion-row>
+           <p *ngIf="post_form.controls['time_of_day'].errors && post_form.controls['time_of_day'].dirty" class="danger">Please select the time of day.</p>
+         
+           <!-- <ion-row>
+             <ion-col col-5 class="text-right">
+                  Helpers Requested: <span class="red-required"><sup>*</sup></span>
+             </ion-col>
+             <ion-col col-4 class="input-bg">
+               <ion-item class="counter-item">
+               <counter-input formControlName="required_helpers"></counter-input>
+               </ion-item>
+             </ion-col>
+           </ion-row>
+           <p *ngIf="post_form.controls['required_helpers'].errors && post_form.controls['required_helpers'].dirty" class="danger">Requested helpers must be atleast 1 or more.</p>
+
+           <ion-row>
+             <ion-col col-5 class="text-right">
+                 Hours Requested: <span class="red-required"><sup>*</sup></span>
+             </ion-col>
+             <ion-col col-4 class="input-bg">
+               <ion-item class="counter-item">
+               <counter-input formControlName="request_hours"></counter-input>
+               </ion-item>
+             </ion-col>
+             <ion-col col-5>
+               &nbsp;
+             </ion-col>
+           </ion-row>
+           <p *ngIf="post_form.controls['request_hours'].errors && post_form.controls['request_hours'].dirty" class="danger">Requested hours must be atleast 1 or more.</p> -->
+
+           <ion-row>
+             <ion-col size="12">From Service Address: <span class="red-required"><sup>*</sup></span></ion-col>
+             <ion-col size="12" class="input-bg">
+               <ion-searchbar class="counter-item"
+               [(ngModel)]="autocomplete.query"
+               (ionInput)="updateSearch()"
+               formControlName="from_service_address"
+               placeholder="From Service Address">
+               </ion-searchbar>
+               <ion-list class="placelist">
+               <ion-item *ngFor="let item of autocompleteItems" (click)="chooseItem(item)">
+               {{ item.description }}
+               </ion-item>
+               </ion-list>
+             </ion-col>
+           </ion-row>
+           <p *ngIf="post_form.controls['from_service_address'].errors && post_form.controls['from_service_address'].dirty" class="danger">Please enter the from service address.</p>
+          <br>
+          <span>Main Level, no Stairwell is "0"</span>
+				  <span>Elevator is "0" as Stairwell not needed</span>
+
+          <ion-row>
+            <ion-col size="4" class="text-right">
+                (Outside Stairs) External Stairwell:
+            </ion-col>
+            <ion-col size="5" class="input-bg">
+              <ion-item class="counter-item ion-text-center">
+                <ion-button color="light" (click)="helpdecrease()">
+                  <ion-icon name="remove" ></ion-icon>
+                </ion-button>
+                <span class="counter-inner ion-text-center">{{counterValue}}</span>
+                <ion-button color="light" (click)="helpincrease()">
+                  <ion-icon name="add"></ion-icon>
+                </ion-button>
+            </ion-item>
+              <!-- <ion-item class="counter-item">
+              <counter-input formControlName="from_outside_stairs"></counter-input>
+              </ion-item> -->
+            </ion-col>
+            <ion-col size="3">
+                <p>External Stairwell: Stairwell(s) outside the home typically in Apartment.</p>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col size="4" class="text-right">
+                (Inside Stairs) Internal Stairwell:
+            </ion-col>
+            <ion-col size="5" class="input-bg">
+              <ion-item class="counter-item ion-text-center">
+                <ion-button color="light" (click)="hourdecrease()">
+                  <ion-icon name="remove" ></ion-icon>
+                </ion-button>
+                <span class="counter-inner ion-text-center">{{counterValueHour}}</span>
+                <ion-button color="light" (click)="hourincrease()">
+                  <ion-icon name="add"></ion-icon>
+                </ion-button>
+            </ion-item>
+              <!-- <ion-item class="counter-item">
+              <counter-input formControlName="from_inside_stairs"></counter-input>
+              </ion-item> -->
+            </ion-col>
+            <ion-col size="3">
+                <p>Internal Stairwell: Stairwell(s) inside the home typically in two story homes</p>
+            </ion-col>
+          </ion-row>
+
+           <!-- <ion-row>
+             <ion-col col-12>To Service Address: <span class="red-required"><sup>*</sup></span></ion-col>
+             <ion-col col-12 class="input-bg">
+               <ion-searchbar
+               [(ngModel)]="autocomplete1.query"
+               [showCancelButton]="false"
+               (ionInput)="updateSearch1()"
+               formControlName="to_service_address"
+               placeholder="To Service Address">
+               </ion-searchbar>
+               <ion-list class="placelist">
+               <ion-item *ngFor="let item of autocompleteItems1" (click)="chooseItem1(item)">
+               {{ item.description }}
+               </ion-item>
+               </ion-list>
+             </ion-col>
+           </ion-row>
+           <p *ngIf="post_form.controls['to_service_address'].errors && post_form.controls['to_service_address'].dirty" class="danger">Please enter the to service address.</p>
+           <span>Main Level, no Stairwell is "0"</span>
+				   <span>Elevator is "0" as Stairwell not needed</span>
+
+           <ion-row>
+             <ion-col col-5 class="text-right">
+                 (Outside Stairs) External Stairwell:
+             </ion-col>
+             <ion-col col-4 class="input-bg">
+                <ion-item class="counter-item">
+               <counter-input formControlName="to_outside_stairs"></counter-input>
+               </ion-item>
+             </ion-col>
+             <ion-col col-3>
+                <p>External Stairwell: Stairwell(s) outside the home typically in Apartment.</p>
+            </ion-col>
+           </ion-row>
+
+           <ion-row>
+             <ion-col col-5 class="text-right">
+                 (Inside Stairs) Internal Stairwell:
+             </ion-col>
+             <ion-col col-4 class="input-bg">
+                <ion-item class="counter-item">
+               <counter-input formControlName="to_inside_stairs"></counter-input>
+               </ion-item>
+             </ion-col>
+             <ion-col col-3>
+                <p>Internal Stairwell: Stairwell(s) inside the home typically in two story homes</p>
+            </ion-col>
+           </ion-row> -->
+
+         </ion-grid>
+
+        </section>
+
+        <section class="form-section">
+          <button ion-button block class="form-action-button create-post-button" type="submit" [disabled]="!post_form.valid">Next</button>
+        </section>
+      </form>
+    </div>
+  </div>
+</ion-content>

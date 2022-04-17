@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { AlertController, LoadingController, MenuController, NavController, ToastController } from '@ionic/angular';
+import { AlertController, LoadingController, MenuController, ModalController, NavController, ToastController } from '@ionic/angular';
 import { WordpressService } from 'src/app/providers/wordpress.service';
 import { Device } from '@ionic-native/device/ngx'; 
 import { ActivatedRoute } from '@angular/router';
@@ -25,7 +25,8 @@ export class LoginPage implements OnInit {
     public menuCtrl: MenuController,
     private toastController: ToastController,
     private formbuilder:FormBuilder,
-    private device: Device
+    private device: Device,
+    private modalCtrl:ModalController
   ) { }
 
   ngOnInit() {
@@ -113,6 +114,7 @@ export class LoginPage implements OnInit {
   }
 
   goToForgotPassword() {
+    this.modalCtrl.dismiss();
     this.nav.navigateForward("forgot-password");
   }
 

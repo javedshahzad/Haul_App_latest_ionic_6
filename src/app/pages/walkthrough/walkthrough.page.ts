@@ -49,7 +49,7 @@ export class WalkthroughPage implements OnInit {
       this.services = [
         { title: '<span class="big-font">Labor Only</span>', pagetitle: 'Labor Only', icon: 'assets/imgs/pic2.jpg', id:'16',url:"truckonly"},
         { title: '<span class="big-font">Item Delivery</span>', pagetitle: 'Item Delivery', icon: 'assets/imgs/pic3.png', id:'18',url:"PickupPage"},
-        { title: '<span class="big-font">Junk Removal</span>', pagetitle: 'Junk Removal', icon: 'assets/imgs/pic4.jpg', id:'23',url:"SmallmovePage"},
+        { title: '<span class="big-font">Junk Removal</span>', pagetitle: 'Junk Removal', icon: 'assets/imgs/pic4.jpg', id:'23',url:"smallmove"},
         { title: '<span class="big-font">Full Move</span>', pagetitle: 'Residential or Commercial', icon: 'assets/imgs/pic5.jpg', id:'17',url:"MovePage"},
         // { title: '<span class="big-font">Donation Item (FREE!)</span>', pagetitle: 'Charity and Donation Pickup', icon: 'assets/imgs/heart.png', id:'19',url:"charitable"},
       ];

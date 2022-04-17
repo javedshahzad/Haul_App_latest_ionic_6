@@ -110,6 +110,7 @@ export class DonationitemPage implements OnInit {
     actionSheet.present();
   }
   getImage(sourceType) {
+    console.log(sourceType)
     const options: CameraOptions = {
       quality: 50,
       destinationType: this.camera.DestinationType.FILE_URI,
@@ -293,7 +294,7 @@ export class DonationitemPage implements OnInit {
       ]
     });
     alert.present();
-
+    this.util.dismisloading()
     }
     else{
       this.wordpressService.createCharitableContribution(this.photos,form_data,form_data1)
