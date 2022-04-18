@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-icon name="arrow-back" (click)="back()" style="font-size: 20px; margin-left: 10px;" slot="start"></ion-icon>
+    <ion-title>Room Information</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="forms-examples-content login-bg">
+  <h1>{{pagetitle}}</h1>
+
+    <form class="sample-form post-form" [formGroup]="room_video_form" (ngSubmit)="mediaData()">
+
+        <section class="form-section">
+         <ion-grid>
+           <ion-row>
+             <ion-col size="12">
+              <strong>Move Description:</strong> 
+            <p> Feel free to add any description that you feel may help your Moving Providers.</p>
+                <ion-textarea formControlName="item_decscription" placeholder="Type description here..." class="upload_video"></ion-textarea>
+             </ion-col>
+           </ion-row>
+
+           <ion-row>
+              <ion-col size="12">
+                <strong>Add a Video / Pictures:</strong>
+                <p>
+                  Upload a video/picture of your moving project to provide to the Moving Provider. Be sure to capture everything you plan to have moved. A picture is worth a 1,000 words.
+                </p>
+                <ion-button expand="full" class="upload_video" (click)="selectType()">Upload</ion-button>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col size="12" *ngFor="let fn of filenames; let id = index">
+                <ion-card class="block e-img-card">
+                  <span>{{fn}}  <ion-icon name="close-circle" class="deleteIcon" (click)="deletePhoto(id)"></ion-icon></span>
+                </ion-card>
+              </ion-col>
+            </ion-row>
+
+         </ion-grid>
+
+         <ion-input type="hidden" formControlName="video_or_pic" [(ngModel)]="mediaURI"></ion-input> 
+       </section>
+
+      <section class="form-section">
+        <!-- <div  class="form-action-button create-post-button">Submit Request</div> -->
+        <ion-button  expand="block" color="dark" type="submit" [disabled]="!du">Submit Request</ion-button>
+      </section>
+    <p>&nbsp;</p>
+    </form>
+    <p>&nbsp;</p>
+</ion-content>

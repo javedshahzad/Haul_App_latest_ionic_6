@@ -4,18 +4,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { MovesecondPageRoutingModule } from './movesecond-routing.module';
+import { MoveVideoPageRoutingModule } from './move-video-routing.module';
 
-import { MovesecondPage } from './movesecond.page';
+import { MoveVideoPage } from './move-video.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    MovesecondPageRoutingModule,
+    MoveVideoPageRoutingModule,
     ReactiveFormsModule
   ],
-  declarations: [MovesecondPage]
+  declarations: [MoveVideoPage]
 })
-export class MovesecondPageModule {}
+export class MoveVideoPageModule {}

@@ -107,6 +107,22 @@ const routes: Routes = [
     path: 'readme',
     loadChildren: () => import('./pages/readme/readme.module').then( m => m.ReadmePageModule)
   },
+  {
+    path: 'changepassword',
+    loadChildren: () => import('./pages/changepassword/changepassword.module').then( m => m.ChangepasswordPageModule)
+  },
+  {
+    path: 'customer-profile-settings',
+    loadChildren: () => import('./pages/customer-profile-settings/customer-profile-settings.module').then( m => m.CustomerProfileSettingsPageModule)
+  },
+  {
+    path: 'movethird',
+    loadChildren: () => import('./pages/movethird/movethird.module').then( m => m.MovethirdPageModule)
+  },
+  {
+    path: 'move-video',
+    loadChildren: () => import('./pages/move-video/move-video.module').then( m => m.MoveVideoPageModule)
+  },
 ];
 
 @NgModule({

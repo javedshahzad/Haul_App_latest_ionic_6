@@ -5,7 +5,7 @@
   Ionic pages and navigation.
 -->
 <ion-header *ngIf="isLoggedin == false" class="ion-no-border">
-  <ion-toolbar>
+  <ion-toolbar class="ion-no-border">
     <button (click)="openMenu('customer-menu')" class="menu_button" [hidden]="isVendor">
       <ion-icon name="menu"  class="menu_icon"></ion-icon>
     </button> 
@@ -14,7 +14,7 @@
 </ion-header>
 
 <ion-header *ngIf="isLoggedin == true" class="ion-no-border">
-  <ion-toolbar>
+  <ion-toolbar class="ion-no-border">
       <button (click)="openMenu('quick-menu')" class="menu_button"><ion-icon name="menu" class="menu_icon"></ion-icon></button>
   </ion-toolbar>
 </ion-header>
@@ -73,7 +73,7 @@
               <!-- <ion-col col-6 class="head_h logo-lock" *ngIf="isLoggedin == false">
                   <h1 class="h-heahing">Moving Simplified</h1>
               </ion-col> -->
-              <ion-col size="7" class="head_h logo-lock" text-left>
+              <ion-col size="7" class="head_h logo-lock">
                 <!-- <h1 class="h-heahing">Moving Simplified</h1> -->
                 <p class="need" (click)="selectType()">Need help? Text or Call</p>
                 <p class="phone" (click)="selectType()">(336)265-6633</p>

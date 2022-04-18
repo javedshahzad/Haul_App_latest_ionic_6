@@ -1,9 +1,266 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>movesecond</ion-title>
+  <ion-toolbar color="primary">
+    <ion-icon name="arrow-back" (click)="back()" style="font-size: 20px; margin-left: 10px;" slot="start"></ion-icon>
+    <ion-title>Hual</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="forms-examples-content ion-padding">
+  <form class="sample-form post-form" [formGroup]="post_form" (ngSubmit)="moveNextTo()">
+  <section class="form-section">
+    <ion-grid class="post-example-view">
+        <span>
+            In order to provide the most accurate price, we will need to get an understanding of  your From Service Address Move details.   Please fill out the fields below.
+          </span> 
+     <ion-row>
+       <ion-col size="12">From Service Address: <span class="red-required"><sup>*</sup></span></ion-col>
+       <ion-col size="12">
+         <ion-searchbar  class="counter-item"
+         [(ngModel)]="autocomplete.query"
+         (ionInput)="updateSearch()"
+         formControlName="from_service_address"
+         placeholder="From Service Address">
+         </ion-searchbar>
+         <ion-list class="placelist">
+         <ion-item *ngFor="let item of autocompleteItems" (click)="chooseItem(item)">
+         {{ item.description }}
+         </ion-item>
+         </ion-list>
+       </ion-col>
+       <span *ngIf="post_form.controls['from_service_address'].errors && post_form.controls['from_service_address'].dirty" class="danger" padding>Please enter the from service address.</span>
+    
+       <ion-col size="12">
+         <br>
+         <span>Main Level, no Stairwell is "0"</span>
+         <span>Elevator is "0" as Stairwell not needed.</span>
+       </ion-col>
+     </ion-row>
+   
+     <ion-row class="ex_level">
+       <ion-col size="5" class="text-right">(Outside Stairs) External Stairwells:</ion-col>
+       <ion-col size="4" class="input-bg">
+        <ion-item class="counter-item ion-text-center">
+          <ion-button color="light" (click)="outstairdecrease()">
+            <ion-icon name="remove" ></ion-icon>
+          </ion-button>
+          <span class="counter-inner ion-text-center">{{outside_stairs_ext_level}}</span>
+          <ion-button color="light" (click)="outstairincrease()">
+            <ion-icon name="add"></ion-icon>
+          </ion-button>
+      </ion-item>
+       </ion-col>
+       <ion-col size="3" class="padd_0">
+          <p>External Stairwell: Stairwell(s) outside the home typically in Apartment.</p>
+      </ion-col>
+     </ion-row>
+     <div class="border">
+
+    </div>
+     <ion-row> 
+       <ion-col size="12" class="after_line">
+       <p>&nbsp;</p>  
+        Input the estimated number of Square Feet for the Upper and Lower Level of your property. Total square
+          feet should be approximate to total home Sq Feet. Lower level is for one level property.</ion-col>
+       <ion-col size="5"  class="text-right">Est. Sq Ft Upper Level:</ion-col>
+       <ion-col size="7" class="input-bg">
+       <ion-select class="counter-item" formControlName="est_sqft_upper_level"  class="counter-item" placeholder="Est. Sq Ft Upstairs" (ionChange)="onChange(v1.value,v2.value)" #v1 formControlName="est_sqft_upper_level" [ngModel]="a1">
+          <ion-select-option *ngFor="let a of arr100" value="{{a}}">{{a}}</ion-select-option>
+        </ion-select>
+       </ion-col>
+     </ion-row>
+
+     <ion-row>
+       <ion-col size="5" class="text-right">Est. Sq Ft Lower Level:</ion-col>
+       <ion-col size="7" class="input-bg" >
+       <ion-select class="counter-item" formControlName="est_sqft_lower_level" (ionChange)="onChange(v1.value,v2.value)" placeholder="Est. Sq Ft Downstairs" #v2 [ngModel]="a2">
+          <ion-select-option class="counter-item" *ngFor="let a of arr100" value="{{a}}">{{a}}</ion-select-option>
+        </ion-select>
+       </ion-col>
+     </ion-row>
+
+     <ion-row>
+       <ion-col size="5" class="text-right">Total Estimated Sq Foot Main living area:</ion-col>
+       <ion-col size="7" class="input-bg total_estimate" class="counter-item ion-text-center">
+       <span class="grey-span">{{a3}}</span>
+       <ion-input  type="hidden" formControlName="total_est_living_area" value="{{a3}}"></ion-input>
+       </ion-col>
+     </ion-row>
+     <div class="border">
+
+    </div>
+     <ion-row>
+       <ion-col size="12" class="after_line">
+          <p>&nbsp;</p>  
+          The more information the better for your moving service provider. Please indicate provide additional details below.
+       </ion-col> 
+       <ion-col size="5" class="text-right">Total Bedrooms:</ion-col>
+       <ion-col size="7" class="input-bg">
+        <ion-item class="counter-item ion-text-center">
+          <ion-button color="light" (click)="bedroomdecrease()">
+            <ion-icon name="remove" ></ion-icon>
+          </ion-button>
+          <span class="counter-inner ion-text-center">{{total_bedrooms}}</span>
+          <ion-button color="light" (click)="bedroomincrease()">
+            <ion-icon name="add"></ion-icon>
+          </ion-button>
+      </ion-item>
+       </ion-col>
+     </ion-row>
+
+     <ion-row>
+       <ion-col size="5" class="text-right">Total Bathrooms:</ion-col>
+
+       <ion-col size="7" class="input-bg">
+        <ion-item class="counter-item ion-text-center">
+          <ion-button color="light" (click)="Bathroomsdecrease()">
+            <ion-icon name="remove" ></ion-icon>
+          </ion-button>
+          <span class="counter-inner ion-text-center">{{total_bathrooms}}</span>
+          <ion-button color="light" (click)="Bathroomsincrease()">
+            <ion-icon name="add"></ion-icon>
+          </ion-button>
+      </ion-item>
+       </ion-col>
+     </ion-row>
+
+     <ion-row>
+       <ion-col size="5" class="text-right">Additional Rooms Upstairs:</ion-col>
+       <ion-col size="7" class="input-bg">
+        <ion-item class="counter-item ion-text-center">
+          <ion-button color="light" (click)="Upstairsdecrease()">
+            <ion-icon name="remove" ></ion-icon>
+          </ion-button>
+          <span class="counter-inner ion-text-center">{{rooms_upstairs}}</span>
+          <ion-button color="light" (click)="Upstairsincrease()">
+            <ion-icon name="add"></ion-icon>
+          </ion-button>
+      </ion-item>
+       </ion-col>
+     </ion-row>
+ 
+     <ion-row>
+       <ion-col size="5" class="text-right">Additional Rooms Downstairs:</ion-col>
+       <ion-col size="7" class="input-bg">
+        <ion-item class="counter-item ion-text-center">
+          <ion-button color="light" (click)="Downstairsdecrease()">
+            <ion-icon name="remove" ></ion-icon>
+          </ion-button>
+          <span class="counter-inner ion-text-center">{{rooms_downstairs}}</span>
+          <ion-button color="light" (click)="Downstairsincrease()">
+            <ion-icon name="add"></ion-icon>
+          </ion-button>
+      </ion-item>
+
+       </ion-col>
+     </ion-row>
+     <div class="border">
+
+    </div>
+     <ion-row>
+       <ion-col size="12" class="after_line">
+          <p>&nbsp;</p>  
+        Only input Sq Footage that requires items to be moved from the space.Leave as blank if you will not be moving items from the areas.</ion-col> 
+       <ion-col size="5" class="text-right">Est. Garage Sq Ft:</ion-col>
+       <ion-col size="7" class="input-bg">
+       <ion-select class="counter-item" (ionChange)="onChange2(z1.value,z2.value,z3.value,z4.value)" placeholder="Est. Garage Sq Ft" #z3 formControlName="garage_sqft" [ngModel]="bb1">
+          <ion-select-option *ngFor="let a of arr50" value="{{a}}">{{a}}</ion-select-option>
+        </ion-select>
+       </ion-col>
+     </ion-row>
+
+     <ion-row>
+       <ion-col size="5" class="text-right">Est. Attic Sq Ft:</ion-col>
+       <ion-col size="7" class="input-bg">
+        <ion-select class="counter-item" (ionChange)="onChange2(z1.value,z2.value,z3.value,z4.value)" placeholder="Est. Attic Sq Ft" #z4 formControlName="attic_sqft" [ngModel]="bb2">
+          <ion-select-option *ngFor="let a of arr50" value="{{a}}">{{a}}</ion-select-option>
+        </ion-select>
+       </ion-col>
+     </ion-row>
+
+     <ion-row>
+       <ion-col size="5" class="text-right">Est. Basement Sq Ft:</ion-col>
+       <ion-col size="7" class="input-bg">
+         <ion-select class="counter-item" (ionChange)="onChange2(z1.value,z2.value,z3.value,z4.value)" placeholder="Est. Basement Sq Ft" #z1 formControlName="basement_sqft" [ngModel]="b1">
+            <ion-select-option *ngFor="let a of arr50" value="{{a}}">{{a}}</ion-select-option>
+          </ion-select>
+       </ion-col>
+     </ion-row>
+
+     <ion-row>
+       <ion-col size="5" class="text-right">Est. Outside Storage (Shed) Sq Feet:</ion-col>
+       <ion-col size="7" class="input-bg">
+      <ion-select class="counter-item" (ionChange)="onChange2(z1.value,z2.value,z3.value,z4.value)" placeholder="Est. Outside Storage Sq Feet" #z2 formControlName="outside_storage_sqft" [ngModel]="b2">
+          <ion-select-option *ngFor="let a of arr50" value="{{a}}">{{a}}</ion-select-option>
+        </ion-select>
+       </ion-col>
+     </ion-row>
+
+     <ion-row>
+       <ion-col size="5" class="text-right">Total Estimated Sq Foot outside main living area:</ion-col>
+       <ion-col size="7" class="input-bg total_estimate" class="counter-item ion-text-center">
+       <span class="grey-span" >{{b3}}</span>
+       <ion-input type="hidden" formControlName="total_est_outside_living_area" value="{{b3}}"></ion-input>
+       </ion-col>
+     </ion-row>
+     <div class="border">
+
+    </div>
+     <ion-row>
+       <ion-col size="12" class="after_line">
+          <p>&nbsp;</p>   
+        Indicate to your service provider if you will have any furniture / equipment that will require moving.Some movers may charge an additional cost if item is determined to require disassembly.Leave as “0”  if items are non-applicable.</ion-col>
+       <ion-col size="5" class="text-right">Outside / Patio Furniture:</ion-col>
+       <ion-col size="7" class="input-bg">
+        <ion-item class="counter-item ion-text-center">
+          <ion-button color="light" (click)="Furnituredecrease()">
+            <ion-icon name="remove" ></ion-icon>
+          </ion-button>
+          <span class="counter-inner ion-text-center">{{patio_furniture_sqft}}</span>
+          <ion-button color="light" (click)="Furnitureincrease()">
+            <ion-icon name="add"></ion-icon>
+          </ion-button>
+      </ion-item>
+       </ion-col>
+     </ion-row>
+
+     <ion-row>
+       <ion-col size="5" class="text-right">Exercise Equipment:</ion-col>
+       <ion-col size="7" class="input-bg">
+        <ion-item class="counter-item ion-text-center">
+          <ion-button color="light" (click)="Equipmentdecrease()">
+            <ion-icon name="remove" ></ion-icon>
+          </ion-button>
+          <span class="counter-inner ion-text-center">{{exe_equipment}}</span>
+          <ion-button color="light" (click)="Equipmentincrease()">
+            <ion-icon name="add"></ion-icon>
+          </ion-button>
+      </ion-item>
+       </ion-col>
+     </ion-row>
+
+     <ion-row>
+       <ion-col size="5" class="text-right">Gas Powered Equipment:</ion-col>
+       <ion-col size="7" class="input-bg">
+        <ion-item class="counter-item ion-text-center">
+          <ion-button color="light" (click)="Powereddecrease()">
+            <ion-icon name="remove" ></ion-icon>
+          </ion-button>
+          <span class="counter-inner ion-text-center">{{gas_equipment}}</span>
+          <ion-button color="light" (click)="Poweredincrease()">
+            <ion-icon name="add"></ion-icon>
+          </ion-button>
+      </ion-item>
+       </ion-col>
+     </ion-row>
+
+   </ion-grid>
+  </section>
+
+    <section class="form-section">
+      <button ion-button block class="form-action-button create-post-button" type="submit" [disabled]="!post_form.valid">Next</button>
+    </section>
+    <p>&nbsp;</p>
+  </form>
 
 </ion-content>
+

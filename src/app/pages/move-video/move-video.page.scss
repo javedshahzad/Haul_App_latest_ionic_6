@@ -356,28 +356,7 @@ input.searchbar-input {
 
               
 
-                .counter-item
-                {
-                    margin: 0px;
-                    background: #c6c6c6;
-                    --background: #c6c6c6;
-                    margin-bottom: 21px !important;
-                    border: 3px solid #717171;
-                    border-radius: 7px;
-                    max-height: 50px;
-                    min-height: 50px;
-                    .item-inner
-                    {
-                        .counter-label
-                        {
-                            margin-left: 30px;
-                        }
-
-                        counter-input {
-                            padding-right: 30px;
-                        }
-                    }
-                }
+           
             }
         }
 
@@ -622,4 +601,13 @@ ion-alert.category-prompt {
     margin-top: 0px!important;
     float: right;
     margin-right: 13px!important;
+}
+.counter-item
+{
+    background: #c6c6c6;
+    --background: #c6c6c6;
+    margin-bottom: 15px !important;
+    border: 3px solid #717171;
+    border-radius: 7px;
+   
 }

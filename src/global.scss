@@ -31,6 +31,23 @@
   font-weight: bold;
 }
 
+@font-face {
+  font-family: julius;
+  src: url('assets/fonts/JuliusSansOne-Regular.ttf');
+}
+@font-face {
+  font-family: Markazitext;
+  src: url('assets/fonts/markazitext-regular.ttf');
+}
+@font-face {
+  font-family: JosefinSans;
+  src: url('assets/fonts/JosefinSans-Regular.ttf');
+}
+@font-face {
+  font-family: RockSalt;
+  src: url('assets/fonts/RockSalt.ttf');
+}
+
 
 $white: #FFFFFF;
 $white-a: darken($white, 3%);

@@ -4,18 +4,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { MovesecondPageRoutingModule } from './movesecond-routing.module';
+import { MovethirdPageRoutingModule } from './movethird-routing.module';
 
-import { MovesecondPage } from './movesecond.page';
+import { MovethirdPage } from './movethird.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    MovesecondPageRoutingModule,
+    MovethirdPageRoutingModule,
     ReactiveFormsModule
   ],
-  declarations: [MovesecondPage]
+  declarations: [MovethirdPage]
 })
-export class MovesecondPageModule {}
+export class MovethirdPageModule {}

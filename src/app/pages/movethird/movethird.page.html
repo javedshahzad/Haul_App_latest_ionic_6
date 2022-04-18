@@ -1,0 +1,142 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-icon name="arrow-back" (click)="back()" style="font-size: 20px; margin-left: 10px;" slot="start"></ion-icon>
+    <ion-title>Hual</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="forms-examples-content ion-padding">
+  <form class="sample-form post-form" [formGroup]="post_form" (ngSubmit)="moveNextTo()">
+  <section class="form-section">
+    <ion-grid class="post-example-view">
+      <ion-row>
+        <ion-col size="12">
+          <span>
+            Do you require Packers?  Our moving providers will offer services beyond loading / unloading.  Please indicate the number of Packers you will require for your moving project.  If not are needed, skip to the next section.
+          </span>
+          <span>
+            *Boxes, Tape, Air bags will not be purchased by the vendor.  If you require the vendor to purchase such supplies, please indicate in the item description field.
+          </span>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ex_level">
+        <ion-col size="5" class="text-right">Packers Requested:</ion-col>
+        <ion-col size="7" class="input-bg">
+         <ion-item class="counter-item ion-text-center">
+           <ion-button color="light" (click)="outstairdecrease()">
+             <ion-icon name="remove" ></ion-icon>
+           </ion-button>
+           <span class="counter-inner ion-text-center">{{packers_requested}}</span>
+           <ion-button color="light" (click)="outstairincrease()">
+             <ion-icon name="add"></ion-icon>
+           </ion-button>
+       </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ex_level">
+        <ion-col size="5" class="text-right">Hours Requested:</ion-col>
+        <ion-col size="7" class="input-bg">
+         <ion-item class="counter-item ion-text-center">
+           <ion-button color="light" (click)="Hoursdecrease()">
+             <ion-icon name="remove" ></ion-icon>
+           </ion-button>
+           <span class="counter-inner ion-text-center">{{hours_requested}}</span>
+           <ion-button color="light" (click)="Hoursincrease()">
+             <ion-icon name="add"></ion-icon>
+           </ion-button>
+       </ion-item>
+        </ion-col>
+      </ion-row>
+      <div class="border">
+ 
+     </div>
+     <ion-row>
+      <ion-col size="12">
+        <span class="after_line">
+            Please enter the information about the Service Destination Address
+        </span>
+      </ion-col>
+    </ion-row>
+     <ion-row>
+       <ion-col size="12">To Service Address: <span class="red-required"><sup>*</sup></span></ion-col>
+       <ion-col size="12">
+         <ion-searchbar  class="counter-item"
+         [(ngModel)]="autocomplete.query"
+         (ionInput)="updateSearch()"
+         formControlName="to_service_address"
+         placeholder="To Service Address">
+         </ion-searchbar>
+         <ion-list class="placelist">
+         <ion-item *ngFor="let item of autocompleteItems" (click)="chooseItem(item)">
+         {{ item.description }}
+         </ion-item>
+         </ion-list>
+       </ion-col>
+       <span *ngIf="post_form.controls['to_service_address'].errors && post_form.controls['to_service_address'].dirty" class="danger" padding>Please enter the from service address.</span>
+     </ion-row>
+   
+<br>
+
+
+     <ion-row>
+       <ion-col size="5" class="text-right">Property Type:</ion-col>
+       <ion-col size="7" class="input-bg" >
+       <ion-select class="counter-item" formControlName="to_type" placeholder="Property Type" >
+          <ion-label>Property Type</ion-label>
+          <ion-select-option value="apartment">Apartment</ion-select-option>
+          <ion-select-option value="condo">Condo</ion-select-option>
+          <ion-select-option value="house">House</ion-select-option>
+          <ion-select-option value="storage_room">Storage Room</ion-select-option>
+          <ion-select-option value="business">Business</ion-select-option>
+        </ion-select>
+       </ion-col>
+     </ion-row>
+
+
+
+     <ion-row class="ex_level">
+      <ion-col size="5" class="text-right">(Outside Stairwell) Additional Levels from Main Stairwell:</ion-col>
+      <ion-col size="4" class="input-bg">
+       <ion-item class="counter-item ion-text-center">
+         <ion-button color="light" (click)="Additionaldecrease()">
+           <ion-icon name="remove" ></ion-icon>
+         </ion-button>
+         <span class="counter-inner ion-text-center">{{outside_stairs_add_level}}</span>
+         <ion-button color="light" (click)="Additionalincrease()">
+           <ion-icon name="add"></ion-icon>
+         </ion-button>
+     </ion-item>
+      </ion-col>
+      <ion-col size="3" class="padd_0">
+        <p>External Stairwell: Stairwell(s) outside the home typically in Apartment.</p>
+     </ion-col>
+    </ion-row>
+
+    <ion-row class="ex_level">
+      <ion-col size="5" class="text-right">(Inside Stairwell) Additional Levels from Main Stairwell:</ion-col>
+      <ion-col size="4" class="input-bg">
+       <ion-item class="counter-item ion-text-center">
+         <ion-button color="light" (click)="inOutdecrease()">
+           <ion-icon name="remove" ></ion-icon>
+         </ion-button>
+         <span class="counter-inner ion-text-center">{{inside_stairs_add_level}}</span>
+         <ion-button color="light" (click)="inOutincrease()">
+           <ion-icon name="add"></ion-icon>
+         </ion-button>
+     </ion-item>
+      </ion-col>
+      <ion-col size="3" class="padd_0">
+        <p>Internal Stairwell: Stairwell(s) inside the home typically in two story homes</p>
+     </ion-col>
+    </ion-row>
+   </ion-grid>
+  </section>
+
+    <section class="form-section">
+      <button ion-button block class="form-action-button create-post-button" type="submit" [disabled]="!post_form.valid">Next</button>
+    </section>
+    <p>&nbsp;</p>
+  </form>
+
+</ion-content>
+

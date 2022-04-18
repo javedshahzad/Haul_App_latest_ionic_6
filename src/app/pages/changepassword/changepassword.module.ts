@@ -4,18 +4,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { MovesecondPageRoutingModule } from './movesecond-routing.module';
+import { ChangepasswordPageRoutingModule } from './changepassword-routing.module';
 
-import { MovesecondPage } from './movesecond.page';
+import { ChangepasswordPage } from './changepassword.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    MovesecondPageRoutingModule,
+    ChangepasswordPageRoutingModule,
     ReactiveFormsModule
   ],
-  declarations: [MovesecondPage]
+  declarations: [ChangepasswordPage]
 })
-export class MovesecondPageModule {}
+export class ChangepasswordPageModule {}

@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-icon name="arrow-back" (click)="back()" style="font-size: 20px; margin-left: 10px;" slot="start"></ion-icon>
+    <ion-title>Profile Settings</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+
+  <form class="" [formGroup]="ps_form"> 
+      <ion-list>
+          <ion-item>
+            <ion-label  position="floating">Email</ion-label>
+            <ion-input class="dis" type="text" formControlName="userEmail" [(ngModel)]="userEmail" readonly></ion-input>
+          </ion-item>
+    
+          <ion-item>
+            <ion-label  position="floating">Full Name</ion-label>
+            <ion-input type="text" formControlName="userName" [(ngModel)]="userName" required></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label  position="floating">Phone</ion-label>
+            <ion-input type="text" formControlName="userPhone" [(ngModel)]="userPhone" required mobile></ion-input>
+          </ion-item>
+      </ion-list>
+      <ion-button color="secondary" type="submit" (click)="updatePro(ps_form.value)" [disabled]="!ps_form.valid" class="color_submit"  expand="block">Save</ion-button>
+      <!-- <button color="danger" ion-button block (click)="resetFields()">Reset</button> -->
+  </form>
+
+</ion-content>t>

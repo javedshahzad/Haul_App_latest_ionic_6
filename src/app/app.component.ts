@@ -175,10 +175,10 @@ export class AppComponent {
     });
 
     this.pages = [
-              { title: "Home",url: "WalkthroughPage" },
-              { title: "About Us",  url: "AboutusPage" },
-              { title: "Profile Settings",  url: "CustomerProfileSettingsPage" },
-              { title: "Change Password",  url: "ChangepasswordPage" },
+              { title: "Home",url: "walkthrough" },
+              { title: "About Us",  url: "aboutus" },
+              { title: "Profile Settings",  url: "customer-profile-settings" },
+              { title: "Change Password",  url: "changepassword" },
               // { title: "Orders",  url: OrderlistPage },
               // { title: "Messages",  url: MessagesPage },
               // { title: "Settings", url: SettingPage },
