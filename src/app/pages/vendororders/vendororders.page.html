@@ -1,0 +1,101 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-icon name="arrow-back" (click)="back()" style="font-size: 20px; margin-left: 10px;" slot="start"></ion-icon>
+    <ion-title>Vendor Orders</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <img src="assets/imgs/haul-white.png" class="top-logo">
+  <h4 class="h-heading ion-text-center">Haul Service Provider Portal</h4>
+  <h5 class="h-border">Work Order Summary</h5>
+
+     <!-- fab placed to the bottom start -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="showArc==true">
+    <ion-fab-button color="tertiary" (click)="submitArc()">
+      Archive
+    </ion-fab-button>
+  </ion-fab>
+
+  <a  (click)="enableArchive();" class="arch">Archive Orders</a>
+
+  <a  (click)="viewArchive();" class="viewarch">View Archive Order</a>
+
+  <ion-grid class="grid-center">
+
+    <ion-row class="head-row" color="tertiary">
+      <ion-col>
+        <strong>Date Created</strong>
+      </ion-col>
+      <ion-col>
+        <strong>Type</strong>
+      </ion-col>
+      <ion-col>
+        <strong>Status</strong>
+      </ion-col>
+      <ion-col>
+        <strong>$</strong>
+      </ion-col>
+      <ion-col>
+        <strong>Order</strong>
+      </ion-col>
+    </ion-row>
+
+    <div *ngIf="orderList.length > 0">
+      <ion-row *ngFor="let order of orderList" >
+        <ion-col>
+          {{order.date_created}}
+  
+          <ion-checkbox (ionChange)="addArc(order.id, $event)" *ngIf="showArc==true"></ion-checkbox>
+        </ion-col>
+        <ion-col (click)="viewOrder(order)">
+          {{order.product_type_show}}
+        </ion-col>
+        <ion-col (click)="viewOrder(order)"> 
+          {{order.status_show}}
+        </ion-col>
+  
+        <ion-col (click)="viewOrder(order)">
+          <span><strong>Price:</strong><br>${{order.price}}</span>
+          <br><br>
+          <span *ngIf="order.bid_amount && order.bid_amount!='0' && order.bid_amount!='0.00' && order.status_show!='Pending Payment' && order.status_show!='Payment Complete' && order.status_show!='Completed'"><strong>Bid Price: </strong><br>${{order.bid_amount}}</span>
+        </ion-col>
+  
+        <ion-col>
+          {{order.id}}
+  
+  
+          <div *ngIf="order.price=='0.00'">
+            <button *ngIf="(!order.bid_amount || order.bid_amount=='0' || order.bid_amount=='0.00') && order.status_show!='Pending Payment' && order.status_show!='Payment Complete' && order.status_show!='Completed'" ion-button small class="e-small-btn btn-green" (click)="bidNow(order.id, order.product_type);">Bid Now</button>
+            <br>
+            <button ion-button small class="e-small-btn btn-red" (click)="bidApproval('reject','vendor',order.id)">Reject</button>
+          </div>
+  
+  
+          <div *ngIf="order.status_show=='Payment Complete'">
+            <button ion-button small class="e-small-btn btn-green" (click)="setOrderStatus(order.id,'complete')">Complete</button>
+          </div>
+  
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <ion-row class="nodata" *ngIf="!noOrder">
+      <ion-col size="12" class="ion-text-center">No order found</ion-col>
+    </ion-row>
+
+  </ion-grid>
+
+  <ion-infinite-scroll (ionInfinite)="loadMoreOrders($event)">
+    <ion-infinite-scroll-content  loadingSpinner="bubbles" loadingText="Loading more orders..."></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>

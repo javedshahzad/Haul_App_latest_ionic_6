@@ -19,7 +19,7 @@ export class WalkthroughPage implements OnInit {
   userRole: string;
   menurole: string;
   isVendor:boolean = false;
-  pagesV: Array<{title: string, url: any}>;
+  pagesV: any=[];
 
   deviceData: any = [];
 
@@ -41,7 +41,8 @@ export class WalkthroughPage implements OnInit {
 
     // this.menu.swipeEnable(false);
     // Check role of logged in user
-    this.userStoredData = JSON.parse(localStorage.getItem('userStoredData'));
+   // this.userStoredData = JSON.parse(localStorage.getItem('userStoredData'));
+   this.userStoredData = 'vendor';
     if(this.userStoredData==undefined){
 
       this.isLoggedin = true;
@@ -60,6 +61,7 @@ export class WalkthroughPage implements OnInit {
     }
     else{
       this.isLoggedin = false;
+      // this.userRole = this.userStoredData['role'];
       this.userRole = 'vendor';
 
       if(this.userRole == "customer"){
@@ -86,18 +88,18 @@ export class WalkthroughPage implements OnInit {
         this.isVendor=true;
 
         this.pagesV = [
-          { title: "Click Here for Step by Step setup",url: "readme" },
-          { title: "Customer Messages",url: "MessagesPage" },
-          { title: "Work Orders",url: "VendorordersPage" },
-          { title: "Account Settings",url: "VendoraccountPage" },
-          { title: "Service Provider Profile",url:  "VendorProfilesettingsPage"},
-          { title: "Manage Moving Services",url: "ServicesPage" },
-          { title: "Resources",url: "ResourcesPage" },
-          { title: "FAQs",url: "faq" },
-          { title: "About Us",url: "aboutus" },
-          { title: "View Customer Feedback",url: "FeedbackPage" },
-          { title: "Contact HAUL",url: "contactus" },
-          { title: "Change Password",  url: "ChangepasswordPage" },
+          { title: "Click Here for Step by Step setup",url: "readme", color:"secondary"},
+          { title: "Customer Messages",url: "MessagesPage" ,color:"secondary"},
+          { title: "Work Orders",url: "vendororders", color:"secondary" },
+          { title: "Account Settings",url: "VendoraccountPage", color:"secondary" },
+          { title: "Service Provider Profile",url:  "VendorProfilesettingsPage", color:"secondary"},
+          { title: "Manage Moving Services",url: "ServicesPage" , color:"secondary"},
+          { title: "Resources",url: "resources" , color:"medium"},
+          { title: "FAQs",url: "faq", color:"medium" },
+          { title: "About Us",url: "aboutus", color:"medium" },
+          { title: "View Customer Feedback",url: "feedback", color:"secondary" },
+          { title: "Contact HAUL",url: "contactus", color:"medium" },
+          { title: "Change Password",  url: "changepassword", color:"medium" },
         ];
 
       }

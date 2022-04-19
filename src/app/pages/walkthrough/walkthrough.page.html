@@ -4,7 +4,7 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header *ngIf="isLoggedin == false" class="ion-no-border">
+<ion-header  [hidden]="isVendor" class="ion-no-border">
   <ion-toolbar class="ion-no-border">
     <button (click)="openMenu('customer-menu')" class="menu_button" [hidden]="isVendor">
       <ion-icon name="menu"  class="menu_icon"></ion-icon>
@@ -40,21 +40,18 @@
 <ion-content [class.trans-head2]="isLoggedin" [class.login-bg]="!isVendor" >
     <div [hidden]="!isVendor">
         <img src="assets/imgs/haul-white.png" class="top-logo">
-        <h4 class="h-heading">Haul Service Provider Portal</h4>
+        <h4 class="h-heading ion-text-center">Haul Service Provider Portal</h4>
         <h5 class="h-border">Navigation</h5>
-        <ion-list>
-          <ion-item class="leftbtn"  *ngFor="let pv of pagesV" (click)="openPage(pv)">
-            <ion-button expand="block">
-              {{pv.title}}
-            </ion-button>
-          </ion-item>
-          <ion-item>
-            <ion-button class="leftbtn" expand="full" (click)="logOut()">
-              Sign Out
-              </ion-button>
-          </ion-item>
-    
-        </ion-list>
+      <ion-list class="ion-padding">
+        <ion-button expand="block" color="{{pv.color}}" class="leftbtn"  *ngFor="let pv of pagesV" (click)="openPage(pv)">
+          {{pv.title}}
+        </ion-button>
+        <ion-button class="leftbtn" color="medium" expand="block" (click)="logOut()">
+          Sign Out
+          </ion-button>
+      </ion-list>
+          
+
     </div>
   <div [hidden]="isVendor">
       <ion-grid >

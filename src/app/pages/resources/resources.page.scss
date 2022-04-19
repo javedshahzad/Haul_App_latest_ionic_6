@@ -1,0 +1,567 @@
+.login-bg {
+    // background-image: url(../assets/imgs/haul-bg.png);
+    // background-size: 100% 117%;
+    // background-repeat: no-repeat;
+    // background-position: center;
+    --background: #19385d;
+}
+.top-logo{
+    margin: 20px auto;
+    display: block;
+    //min-height: 138px;
+    object-fit: contain;
+    /*margin-right: 0;*/
+    // padding: 16px 0px 16px 0px;
+}
+
+.dark-gray{
+    background-color: #747474!important;
+}
+
+.head_h {
+    padding-right: 0px !important;
+    // background-color: #292929;
+    padding: 5px!important;
+    padding-bottom: 1px !important;
+    max-height: 111px;
+}
+.head_h img {
+    min-height: 94px;
+    max-height: 94px;
+    width: 100%;
+    object-fit: cover;
+}
+.charity-div{
+  float: left;
+    position: relative;
+    top: -15px;
+    width: 58px;
+    padding: 0px;
+}
+.blue-box {
+    background-color: #007aff;
+    text-align: center;
+    border-radius: 12px;
+    // box-shadow: 1px 1px 86px rgb(76, 76, 76);
+}
+.blue-box img {
+    width: 100%;
+    max-height: 120px;
+    object-fit: cover;
+    /*min-height: 90px;
+    padding: 0px;
+    padding-bottom: 0;
+    object-fit: contain;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;*/
+}
+.small-span{
+  font-size: 15px;
+  text-transform: capitalize!important;
+
+}
+.big-font{
+    font-size: 22px;
+    font-weight: 500;
+    display: table-cell!important;
+    vertical-align: middle;
+    /*font-family: julius;*/
+}
+.bottm-link{
+    color: #007aff;
+    display: block;
+    text-align: center;
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 28px;
+    z-index: 9999;
+    position: relative;
+    font-weight: 600;
+    line-height: 0.5;
+}
+.blue-box p {
+    color: #fff;
+    min-height: 45px;
+    font-weight: 600;
+    line-height: 16px;
+    margin: 0px;
+    font-size: 13px;
+    display: table;
+    width: 100%;
+    margin-top: 15px;
+}
+.signin-form-section input {
+    text-align: left;
+    color: #fff;
+}
+button.continue {
+    background: transparent!important;
+}
+.btm-tab img {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -18px;
+    width: 100%;
+    transform: scale(0.9,0.9);
+}
+.icon-bottom-sct a {
+    color: #fff;
+}
+.icon-bottom-sct a:after {
+    content: "";
+    display: block;
+    border-bottom: 4px solid #a1a2a2;
+    width: 123px;
+    margin: auto;
+    padding-top: 9px;
+}
+.btm-tab {
+    position: fixed;
+    width: 100%;
+    left: 0px;
+    right: 0px;
+    bottom: -4px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.item-inner {
+    border: 1px solid #01bfff;
+}
+.item-inner {
+    border: 1px solid #01bfff!important;
+    }
+section.form-section .item {
+    margin-bottom: 19px!important;
+}
+.select, .datetime {
+    width: 100%;
+    max-width: 98%;
+    padding-left: 0px!important;
+}
+span.counter-label {
+    margin-left: 6px!important;
+}
+.item {
+    background-color: #ffffff!important;
+}
+.h-heahing{
+  text-align: center;
+  color: #fff;
+  margin-top: 10px;
+  font-size: 14px;
+  text-decoration: underline;
+  //font-family: Tempus;
+}
+.h-border{
+  text-align: center;
+  border-bottom: 4px solid red;
+  padding-bottom: 10px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.list button.leftbtn:first-child .item-inner {
+    background-color: #32CD32;
+    border: 1px solid #2ebc2e!important;
+}
+
+// .list button.leftbtn:nth-child(7) .item-inner {
+//     background-color: #747474;
+//     border: 1px solid #646464!important;
+// }
+// .list button.leftbtn:nth-child(8) .item-inner {
+//     background-color: #747474;
+//     border: 1px solid #646464!important;
+// }
+// .list button.leftbtn:nth-child(9) .item-inner {
+//     background-color: #747474;
+//     border: 1px solid #646464!important;
+// }
+// .list button.leftbtn:nth-child(11) .item-inner {
+//     background-color: #747474;
+//     border: 1px solid #646464!important;
+// }
+// .list button.leftbtn:nth-child(12) .item-inner {
+//     background-color: #747474;
+//     border: 1px solid #646464!important;
+// }
+// .list button.leftbtn:nth-child(13) .item-inner {
+//     background-color: #747474;
+//     border: 1px solid #646464!important;
+// }
+.phone {
+    font-size: 16px!important;
+}
+.list button.leftbtn:nth-child(n+7):nth-child(-n+9) .item-inner {
+    background-color: #747474;
+    border: 1px solid #646464!important;
+}
+.list button.leftbtn:nth-child(n+11):nth-child(-n+13) .item-inner {
+    background-color: #747474;
+    border: 1px solid #646464!important;
+}
+
+.btm-tab1 {
+    z-index: 9999;
+    position: relative;
+}
+// .scroll-content{
+//    margin-top: 0px!important;
+// }
+ion-toolbar{
+   --background: #19385d;
+}
+
+
+.trans-head2 .scroll-content {
+  padding-top: 0px !important;
+}
+.white-txt{
+    color: #fff !important;
+    margin-top: 0px !important;
+    text-align: justify;
+}
+.signin-form-section .row .service-block:last-child {
+    width: 100%;
+    -webkit-flex: 0 0 100%;
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+.signin-form-section .row .service-block:last-child .blue-box {
+    margin-top: 0px;
+    background-color: transparent;
+}
+.signin-form-section .row .service-block:last-child .blue-box span.big-font {
+    font-size: 18px;
+    padding-right: 10px;
+    position: relative;
+    top: 19px;
+    right: 7px;
+    font-weight: 500;
+}
+.signin-form-section .row .service-block:last-child .blue-box img.charity-div {
+    padding-top: 0px;
+    width: auto;
+    padding: 21px;
+    padding-right: 0;
+}
+.icon{
+    font-size: 1.8em;
+}
+.btn-tab2 .col {
+    padding: 0;
+}
+.btn-tab2 .service_registration{
+    font-size: 13px;
+}
+.btn-tab2 .col:nth-child(n+2) button {
+    background-color: #0074fc;
+}
+.head_h .h-heahing {
+    text-align: center;
+    color: #fff;
+    margin-top: 10px;
+    font-family: Tempus;
+    /* position: relative; */
+    /* right: 37px; */
+    text-align: left;
+    margin-bottom: 0px;
+    text-decoration: underline;
+    font-size: 19px;
+}
+.head_h p {
+    margin-top: 0px;
+    color: #fff;
+    font-size: 12px;
+    text-align: center;
+    font-weight: 600;
+    font-family: JosefinSans;
+    margin-bottom: 5px;  
+}
+.btn_hub {
+    padding: 0px!important;
+}
+ion-grid.grid {
+    padding-bottom: 0px!important;
+    padding-top: 0px!important;
+}
+.bar-button-md {
+    margin-top: -30px!important;
+}  
+button.menu_button.button-md{
+position: absolute;
+left: 0px;
+z-index: 99999;
+}
+@media screen and (min-width: 768px) and (max-width: 1024px){
+    .charity img{
+        width: 100%;
+    }
+    .btm-tab1 button {
+        contain: initial;
+        width: 24.6%!important;
+        display: inline-block;
+    }
+    .head_h img {
+        min-height: 142px;
+        max-height: 142px;
+        margin-bottom: 14px;
+    }
+    .top-logo {
+        width: 163px;
+    }
+}
+@media screen and (max-width: 320px){
+    .btn-tab2 .service_registration {
+    font-size: 9px;
+    }
+    .head_h .h-heahing {
+    text-align: center;
+    color: #fff;
+    margin-top: 10px;
+    font-family: Tempus;
+    position: relative;
+    right: 20px;
+    }
+}
+@media screen and (max-width: 375px){
+    .blue-box p {
+    font-size: 12px;
+    min-height: 45px;
+    }
+    button.service_login {
+    min-width: 82px!important;
+    }
+    .icon-bottom-sct a {
+    color: #fff;
+    top: 4px;
+    }
+    .big-font {
+    font-size: 18px;
+    font-weight: 500;
+    }
+    .signin-form-section .row .service-block:last-child .blue-box {
+    margin-top: 0px;
+    }
+    .signin-form-section .row .service-block:last-child .blue-box span.big-font {
+    font-size: 18px;
+    font-weight: 500;
+    padding-right: 0px;
+    right: 26px;
+    }
+    .signin-form-section .row .service-block:last-child .blue-box img.charity-div {
+    padding: 24px;
+    }
+    .bottm-link {
+    margin-top: 19px;
+    }
+    button.service_login {
+        font-size: 13px;
+        padding: 21px 6px !important;
+    }
+    button.service_registration {
+        font-size: 10px;
+        padding: 13px 12px !important;
+        background: #bd514e;
+        border: 2px solid #365b8e;
+        margin: 0px !important;
+        min-height: 52px;
+        font-family: JosefinSans;
+        font-weight: 600;
+        contain: initial;
+        color: #fff;
+    }
+    .btm-tab1 button span {
+        font-size: 10px !important;
+        text-align: center !important;
+        line-height: 13px;
+    }
+ }
+    button.menu_button {
+        background-color: transparent;
+        padding: 0px!important;
+        box-shadow: none!important;
+    }
+    .content-ios .scroll-content {
+        margin-top: 0px !important;
+    }
+    .scroll-content {
+        margin-top: 0px !important;
+    }
+    // .menu_button {
+    //     margin-top: -40px!important;
+    // }
+    .btm-tab1 button {
+        contain: initial;
+        width: 24.2%;
+        display: inline-block;
+    }
+    .btm-tab1 button span {
+        font-size: 10px;
+        text-align: left;
+        text-transform: capitalize;
+    }
+    button.service_login {
+        font-size: 13px;
+        /*background: #568ed8;*/
+        background: #0073f7;
+        border: 2px solid #365b8e;
+        padding: 0px 6px !important;
+        margin: 0px !important;
+        font-family: JosefinSans;
+        font-weight: 600;
+        min-height: 52px;
+        min-width: 97px;
+        color: #fff;
+    }
+    .service-block {
+        padding: 0px!important;
+    }
+    .service-block .col {
+        padding: 1px;
+    }
+    .service_haul {
+    font-family: JosefinSans!important;
+    }
+    .contact-haul {
+        color: #fff;
+        text-align: center;
+        font-size: 14px;
+        margin-top: -1px!important;
+    }
+
+    @media screen and (max-width: 360px){
+        button.service_registration {
+            font-size: 10px;
+        }
+        button.service_login {
+            font-size: 12px;
+        }
+        .top-logo {
+            width: 112px;
+            margin-top: 3px !important;
+        }
+        .head_h p {
+            font-size: 10px;
+        }
+        .btn-tab2 .service_registration{
+            font-size: 10px;
+            display: inline-block;
+        }
+        .head_h {
+          max-height: 93px;
+            img {
+                min-height: 85px;
+                max-height: 85px;
+            }
+        }
+        .content-md .blue-box img {
+            max-height: 125px;
+            min-height: 125px;
+        }
+    }
+    @media screen and (min-width: 376px){
+        button.service_registration {
+            // background: #bd514e;
+            // border: 2px solid #365b8e;
+            // font-size: 13px;
+            // padding: 21px!important;
+            // margin: 0px!important;
+            // font-family: JosefinSans;
+            // font-weight: 600;
+            background: #bd514e;
+            border: 2px solid #365b8e;
+            font-size: 10px;
+            padding: 14px 7px!important;
+            margin: 0px !important;
+            height: auto;
+            font-family: JosefinSans;
+            font-weight: 600;
+            contain: initial;
+        }
+        .btm-tab1 button span {
+            font-size: 13px;
+            text-align: center;
+        }
+        .content-md .blue-box img {
+            max-height: 125px;
+            min-height: 125px;
+        }
+        
+    }
+
+@media screen and (max-width:375px){
+    .top-logo {
+        width: 112px;
+        margin-top: 3px !important;
+    }
+    .menu_button {
+        margin-left: -5px!important;
+    }
+    .head_h img {
+        min-height: 84px;
+        max-height: 84px;
+        width: 100%;
+        -o-object-fit: cover;
+        object-fit: cover;
+    }
+}
+@media screen and (max-width: 320px){
+    .h-heahing {
+        font-size: 11px;
+    }
+    button.service_login {
+        min-width: 73px !important;
+        max-width: 73px;
+    }
+    .blue-box img {
+        width: 100%;
+        max-height: 94px;
+        -o-object-fit: cover;
+        object-fit: cover;
+    }
+    .menu_button {
+        margin-left: -5px !important;
+        margin-top: -34px!important;
+    }
+}
+
+.walkthrough-header
+    {
+        &::after
+        {
+            background: none;
+        }
+    }
+
+    .walkthrough-content
+    {
+        .button-bar
+        {
+            background: #fff;
+          border-radius: 6px;
+
+            & > .button
+            {
+                box-shadow: none;
+            }
+        }
+    }
+
+    .menu_icon{
+        color: #fff;
+        font-size: 30px;
+        margin: 10px;
+    }
+    .charity img{
+        width: 100%;
+    }
+
+    .leftbtn{
+        border: 2px solid #01bfff !important;
+        border-radius: 5px;
+        text-transform: capitalize;
+    }
+ 

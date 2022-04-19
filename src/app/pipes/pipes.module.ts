@@ -4,11 +4,13 @@ import { HidevaluePipe } from './hidevalue.pipe';
 import { KeyvaluePipe } from './keyvalue.pipe';
 
 @NgModule({
-	declarations: [KeyvaluePipe,
+	declarations: [],
+	imports: [
+        KeyvaluePipe,
     HidevaluePipe,
     BasenamePipe,
-    BasenamePipe],
-	imports: [],
+    BasenamePipe
+    ],
 	exports: [KeyvaluePipe,
     HidevaluePipe,
     BasenamePipe,

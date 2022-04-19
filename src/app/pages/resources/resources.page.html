@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-icon name="arrow-back" (click)="back()" style="font-size: 20px; margin-left: 10px;" slot="start"></ion-icon>
+    <ion-title>Resources</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  
+      <img src="assets/imgs/haul-white.png" class="top-logo">
+      <h4 class="h-heading ion-text-center">Haul Service Provider Portal</h4>
+      <h5 class="h-border">Navigation</h5>
+
+        
+      <ion-grid>
+
+        <ion-row>
+          <ion-col size="12">
+            <h4>Website Links:</h4>
+          </ion-col>
+          <ion-col size="12" *ngIf="nores" >
+              <ion-list class="res-list">
+                <button ion-item *ngFor ="let resource of resources" (click)="viewLink(resource.resource_link)">
+                  {{ resource.resource_link }}
+                </button>
+              </ion-list>
+              <br>
+          </ion-col>
+          <ion-col size="12" *ngIf="!nores" class="red-line">
+              <p class="marg-bot" >No resource link found!</p>
+              <br>
+          </ion-col>
+        </ion-row>
+    
+        <ion-row>
+          <ion-col size="12">
+            <ion-button expand="block" color="secondary" class="form-action-button create-post-button" type="submit" (click)="vendorHomeLink()">Click to Continue to Home Screen</ion-button>
+          </ion-col>
+        </ion-row>
+    
+      </ion-grid>
+
+
+
+</ion-content>
+

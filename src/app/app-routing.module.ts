@@ -123,6 +123,30 @@ const routes: Routes = [
     path: 'move-video',
     loadChildren: () => import('./pages/move-video/move-video.module').then( m => m.MoveVideoPageModule)
   },
+  {
+    path: 'feedback',
+    loadChildren: () => import('./pages/feedback/feedback.module').then( m => m.FeedbackPageModule)
+  },
+  {
+    path: 'resources',
+    loadChildren: () => import('./pages/resources/resources.module').then( m => m.ResourcesPageModule)
+  },
+  {
+    path: 'vendororders',
+    loadChildren: () => import('./pages/vendororders/vendororders.module').then( m => m.VendorordersPageModule)
+  },
+  {
+    path: 'orderdetails',
+    loadChildren: () => import('./pages/orderdetails/orderdetails.module').then( m => m.OrderdetailsPageModule)
+  },
+  {
+    path: 'reportproblem',
+    loadChildren: () => import('./pages/reportproblem/reportproblem.module').then( m => m.ReportproblemPageModule)
+  },
+  {
+    path: 'chat',
+    loadChildren: () => import('./pages/chat/chat.module').then( m => m.ChatPageModule)
+  },
 ];
 
 @NgModule({

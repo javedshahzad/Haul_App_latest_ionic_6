@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-icon name="arrow-back" (click)="back()" style="font-size: 20px; margin-left: 10px;" slot="start"></ion-icon>
+    <ion-title>Feedback</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="ion-padding">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content
+        pullingIcon="arrow-dropdown"
+        pullingText="Pull to refresh"
+        refreshingSpinner="circles"
+        refreshingText="Refreshing...">
+      </ion-refresher-content>
+    </ion-refresher>
+
+  <ion-grid>
+      <ion-row>
+          <ion-col *ngIf="total_reviews>0">
+              <div *ngFor="let f of feedback; let i = index;">
+                  <p class="review-p" >
+                    {{f.comment}}
+                    <br>
+                    <span *ngFor="let i of [1,2,3,4,5]" >
+
+                        <span *ngIf="(f.customer_rating >= i)">
+                          <ion-icon name="star" class="text-green"></ion-icon>
+                        </span>
+                        <span *ngIf="(f.customer_rating < i)">
+                          <span *ngIf="(f.customer_rating > (i-1))">
+                            <ion-icon name="star-half" class="text-green"></ion-icon>
+                          </span>
+                          <span *ngIf="(f.customer_rating <= (i-1))">
+                            <ion-icon name="star-outline" class="text-gray"></ion-icon>
+                          </span>
+                        </span>
+                  
+                      </span>
+                      <br>
+                    <span>({{f.comment_datetime}})</span>
+                    <br>
+                    <span>- By: <i>{{f.customer_name}}</i></span>
+                  </p>
+              </div>
+            </ion-col>
+            <ion-col *ngIf="total_reviews<1">
+              <h3 class="no-feed">No feedback found.</h3>
+            </ion-col>
+        </ion-row>
+  </ion-grid>
+  <ion-infinite-scroll threshold="100px" #infiniteScroll (ionInfinite)="loadMoreFB($event)">
+    <ion-infinite-scroll-content
+            loadingSpinner="bubbles"
+            loadingText="Loading..." >
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
+
