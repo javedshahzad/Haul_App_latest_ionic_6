@@ -4,6 +4,10 @@ import { WordpressService } from './providers/wordpress.service';
 import { Device } from '@ionic-native/device/ngx'; 
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import firebase from 'firebase';
+import { Firebase } from '@ionic-native/firebase/ngx';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -46,121 +50,135 @@ export class AppComponent {
     public loadingCtrl: LoadingController,
     // private androidFullScreen: AndroidFullScreen,
     private device: Device,
-    // public fb: Firebase,
-    private nav : NavController
+    public fb: Firebase,
+    private nav : NavController,
+    private router: Router,
   ) {
-    this.statusBar.backgroundColorByHexString('#19385d');
+      // Initialize Firebase
+    let config = {
+      apiKey: "AIzaSyAFhhDfjdGIpxmgvjpHFbHEKratu-iYVrg",
+      authDomain: "haul-1524551148276.firebaseapp.com",
+      databaseURL: "https://haul-1524551148276.firebaseio.com",
+      projectId: "haul-1524551148276",
+      storageBucket: "haul-1524551148276.appspot.com",
+      messagingSenderId: "1052633147602"
+    };
+    firebase.initializeApp(config);
     this.initializeApp()
   }
 
   async initializeApp() {
     this.platform.ready().then(() => {
+      this.splashScreen.hide();
+      this.statusBar.show();
+      this.statusBar.backgroundColorByHexString('#19385d');
 
-    //   this.fb.onNotificationOpen().subscribe(
-  	// 		(notification) => {
-    //         let activeView = this.nav.getActive();
+      this.fb.onNotificationOpen().subscribe(
+  			async (notification) => {
+            let activeView = this.router.url;
 
-    //         console.log('activeView: ',activeView);
-    //         if(activeView){
-    //           let currentPage = this.nav..name;
-    //           if(notification.source=='bid_page'){
-    //               if(currentPage!='OrderlistPage'){
+            console.log('activeView: ',activeView);
+            if(activeView){
+              // this.router.url === '/home'
+              let currentPage =this.router.url;
+              if(notification.source=='bid_page'){
+                  if(currentPage!='orderlist'){
 
-    //                   let alert = this.alertCtrl.create({
-    //                   backdropDismiss: false,
-    //                   header: 'Notification',
-    //                   message: notification.msgshow,
-    //                   buttons: [
-    //                     {
-    //                       text: 'Close',
-    //                       handler: () => {
-    //                         console.log('Cancel clicked');
-    //                       }
-    //                     },
-    //                     {
-    //                       text: 'View',
-    //                       handler: () => {
-    //                         this.nav.push(OrderlistPage);
-    //                       }
-    //                     }
-    //                   ]
-    //                   });
-    //                   alert.present();
-    //               }
-    //               else{
-    //                 let alert = this.alertCtrl.create({
-    //                   backdropDismiss: false,
-    //                   header: 'Notification',
-    //                   message: notification.msgshow,
-    //                   buttons: [
-    //                     {
-    //                       text: 'Close',
-    //                       handler: () => {
-    //                         console.log('Cancel clicked');
-    //                       }
-    //                     },
-    //                     {
-    //                       text: 'View',
-    //                       handler: () => {
-    //                         this.nav.setRoot(WalkthroughPage);
-    //                         this.nav.push(OrderlistPage);
-    //                       }
-    //                     }
-    //                   ]
-    //                   });
-    //                   alert.present();
+                      let alert =await this.alertCtrl.create({
+                      backdropDismiss: false,
+                      header: 'Notification',
+                      message: notification.msgshow,
+                      buttons: [
+                        {
+                          text: 'Close',
+                          handler: () => {
+                            console.log('Cancel clicked');
+                          }
+                        },
+                        {
+                          text: 'View',
+                          handler: () => {
+                            this.nav.navigateForward("orderlist");
+                          }
+                        }
+                      ]
+                      });
+                      alert.present();
+                  }
+                  else{
+                    let alert =await this.alertCtrl.create({
+                      backdropDismiss: false,
+                      header: 'Notification',
+                      message: notification.msgshow,
+                      buttons: [
+                        {
+                          text: 'Close',
+                          handler: () => {
+                            console.log('Cancel clicked');
+                          }
+                        },
+                        {
+                          text: 'View',
+                          handler: () => {
+                            this.nav.navigateRoot("walkthrough");
+                            // this.nav.push(OrderlistPage);
+                          }
+                        }
+                      ]
+                      });
+                      alert.present();
                     
 
-    //               }
-    //           }
-    //           else if(notification.source=='chat'){
-    //               if(currentPage!='ChatPage'){
-    //                   let alert = this.alertCtrl.create({
-    //                     title: 'Notification',
-    //                     message: notification.msgshow,
-    //                     buttons: ['OK']
-    //                   });
-    //                   alert.present();
-    //               }
-    //           }
-    //           else{
-    //             let alert = this.alertCtrl.create({
-    //               enableBackdropDismiss: false,
-    //               title: 'Notification',
-    //               message: notification.msgshow,
-    //               buttons: ['OK']
-    //             });
-    //             alert.present();
-    //           }
-    //         }
-  	// 		},
-  	// 		error => {
-  	// 			console.error('Error getting the notification', error);
-    //     });
+                  }
+              }
+              else if(notification.source=='chat'){
+                  if(currentPage!='chat'){
+                      let alert =await this.alertCtrl.create({
+                        header: 'Notification',
+                        message: notification.msgshow,
+                        buttons: ['OK']
+                      });
+                      alert.present();
+                  }
+              }
+              else{
+                let alert =await this.alertCtrl.create({
+                  backdropDismiss: false,
+                  header: 'Notification',
+                  message: notification.msgshow,
+                  buttons: ['OK']
+                });
+                alert.present();
+              }
+            }
+  			},
+  			error => {
+  				console.error('Error getting the notification', error);
+        });
         
-    //   // Okay, so the platform is ready and our plugins are available.
-    //   // Here you can do any higher level native things you might need.
-    //   this.statusBar.styleDefault();
-    //   // this.statusBar.hide();
-    //   // this.statusBar.overlaysWebView(false);
-    //   this.splashScreen.hide();
+      // Okay, so the platform is ready and our plugins are available.
+      // Here you can do any higher level native things you might need.
+      this.statusBar.styleDefault();
+      // this.statusBar.hide();
+      // this.statusBar.overlaysWebView(false);
+      this.splashScreen.hide();
 
-    //   this.fb.grantPermission();
+      this.fb.grantPermission();
 
-    //   //-------- Get firebase token
+      //-------- Get firebase token
 
-    //   this.fb.getToken()
-    //   .then(token => {
-    //     console.log(`The token is ${token}`);
-    //     localStorage.setItem('dtoken',token);
-    //   }) // save the token server-side and use it to push notifications to this device
-    //   .catch(error => console.error('Error getting token', error));
+      this.fb.getToken()
+      .then(token => {
+        console.log(`The token is ${token}`);
+        localStorage.setItem('dtoken',token);
+      }) // save the token server-side and use it to push notifications to this device
+      .catch(error => console.error('Error getting token', error));
 
-    // this.fb.onTokenRefresh()
-    //   .subscribe((token: string) => {
-    //     console.log(`Got a new token ${token}`);
-    //     localStorage.setItem('dtoken',token);
-    //   });
+    this.fb.onTokenRefresh()
+      .subscribe((token: string) => {
+        console.log(`Got a new token ${token}`);
+        localStorage.setItem('dtoken',token);
+      });
 
       //-------------------------
       console.log('PLATFORM: ',this.platform);
@@ -284,7 +302,7 @@ export class AppComponent {
             this.wordpressService.userLogoutToken(user_id)
               .subscribe(res => { console.log("LG!"); })
 
-              // this.nav.setRoot(this.nav.getActive().component);
+               this.nav.navigateRoot("walkthrough");
             localStorage.removeItem('userStoredData');
           
            

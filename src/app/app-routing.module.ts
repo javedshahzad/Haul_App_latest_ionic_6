@@ -147,6 +147,42 @@ const routes: Routes = [
     path: 'chat',
     loadChildren: () => import('./pages/chat/chat.module').then( m => m.ChatPageModule)
   },
+  {
+    path: 'messages',
+    loadChildren: () => import('./pages/messages/messages.module').then( m => m.MessagesPageModule)
+  },
+  {
+    path: 'vendoraccount',
+    loadChildren: () => import('./pages/vendoraccount/vendoraccount.module').then( m => m.VendoraccountPageModule)
+  },
+  {
+    path: 'vendor-profilesettings',
+    loadChildren: () => import('./pages/vendor-profilesettings/vendor-profilesettings.module').then( m => m.VendorProfilesettingsPageModule)
+  },
+  {
+    path: 'service',
+    loadChildren: () => import('./pages/service/service.module').then( m => m.ServicePageModule)
+  },
+  {
+    path: 'orderlist',
+    loadChildren: () => import('./pages/orderlist/orderlist.module').then( m => m.OrderlistPageModule)
+  },
+  {
+    path: 'rating',
+    loadChildren: () => import('./pages/rating/rating.module').then( m => m.RatingPageModule)
+  },
+  {
+    path: 'archivedorders',
+    loadChildren: () => import('./pages/archivedorders/archivedorders.module').then( m => m.ArchivedordersPageModule)
+  },
+  {
+    path: 'reviews',
+    loadChildren: () => import('./pages/reviews/reviews.module').then( m => m.ReviewsPageModule)
+  },
+  {
+    path: 'orderdetailscust',
+    loadChildren: () => import('./pages/orderdetailscust/orderdetailscust.module').then( m => m.OrderdetailscustPageModule)
+  },
 ];
 
 @NgModule({

@@ -1,9 +1,57 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>chat</ion-title>
+  <ion-toolbar color="tertiary">
+    <ion-icon name="arrow-back" (click)="back()" style="font-size: 20px; margin-left: 10px;" slot="start"></ion-icon>
+    <ion-title>{{topName}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="content-stable" (touchstart)="onTouch($event)">
 
-</ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="loadMoreLeads($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+    <div class="messages">
+
+      <div class="message" *ngFor="let message of messagesList" [class.gr-bg]="message.read_msg=='0' && message.userid != chatbox.idFrom" [class.align-right]="message.userid == chatbox.idFrom">
+      <h4 *ngIf="message.latest && message.latest=='1' && message.userid != chatbox.idFrom" class="unread unread-h">Unread Messages</h4>
+        <div>
+          <span [class.hidden]="message.userid != chatbox.idFrom"><img src="assets/imgs/grey-c.png" width="50px" class="grey-c" /> {{message.message}}</span>
+          <span [class.hidden]="message.userid == chatbox.idFrom"><img src="assets/imgs/blue-c.png" width="50px" class="blue-c" /> {{message.message}}</span>
+          <p class="chat-meta" *ngIf="orderStatus!='processing' && orderStatus!='completed'">{{message.name | hidevalue}}&nbsp;&nbsp;{{message.time}}</p>
+          <p class="chat-meta" *ngIf="orderStatus=='processing' || orderStatus=='completed'">{{message.name}}&nbsp;&nbsp;{{message.time}}</p>
+        </div>
+      </div>
+
+      <!-- <div class="message" *ngFor="let message of messagesList" [class.align-right]="message.userid == chatbox.idFrom">
+          <div>
+            <span [class.hidden]="message.userid != chatbox.idFrom"><img src="assets/imgs/grey-c.png" width="50px" class="grey-c" /> {{message.message}}</span>
+            <span [class.hidden]="message.userid == chatbox.idFrom"><img src="assets/imgs/blue-c.png" width="50px" class="blue-c" /> {{message.message}}</span>
+            <p class="chat-meta" *ngIf="orderStatus!='processing' && orderStatus!='completed'">{{message.name | hidevalue}}&nbsp;&nbsp;{{message.time}}</p>
+            <p class="chat-meta" *ngIf="orderStatus=='processing' || orderStatus=='completed'">{{message.name}}&nbsp;&nbsp;{{message.time}}</p>
+          </div>
+        </div> -->
+
+    </div>
+
+    </ion-content>
+
+    <ion-footer keyboard-attach class="bar-stable item-input-inset" (touchstart)="onTouch($event)">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-10 class="center">
+            <label class="item-input-wrapper">
+              <input type="text" #chat_input placeholder="Text Input" [(ngModel)]="newmessage" placeholder="Enter a message" />
+            </label>
+          </ion-col>
+          <ion-col col-2 class="center">
+            <button class="button button-clear my-chat" (click)="sendMessage(chatbox.id)">
+              <ion-icon name="paper-plane"></ion-icon>
+            </button>
+          </ion-col>
+        </ion-row>
+
+      </ion-grid>
+
+    </ion-footer>
+

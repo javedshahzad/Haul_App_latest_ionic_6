@@ -1,0 +1,170 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-icon name="arrow-back" (click)="back()" style="font-size: 20px; margin-left: 10px;" slot="start"></ion-icon>
+    <ion-title>Order details customer</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-grid class="grid">
+    <ion-row class="head-row">
+      <ion-col>
+        <strong>Order Details:</strong>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <strong>Service: </strong>{{orderData.product_type_show}}
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="orderData.addr1!=''">
+      <ion-col>
+        <strong>From Service Address: </strong>{{orderData.addr1}}
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="orderData.addr2!=''">
+      <ion-col>
+        <strong>To Service Address: </strong>{{orderData.addr2}}
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="orderData.addr_dist!=''">
+      <ion-col>
+        <strong>Total Distance: </strong>{{orderData.addr_dist}} Miles
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="orderData.dos!=''">
+      <ion-col>
+        <strong>Service Date: </strong>{{orderData.dos}}
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <strong>Price: </strong>${{orderData.price}}
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngFor="let extra of orderData.extraData | keyvalue">
+        <ion-col>
+            <strong>{{extra.key}}: </strong>{{extra.value}}
+        </ion-col>
+    </ion-row>
+
+    <ion-row class="head-row" *ngIf="orderData.product_type!='Donation' && orderData.vendor_name">
+      <ion-col>
+        <strong >Vendor Details:</strong>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="orderData.product_type!='Donation' && orderData.vendor_name"> 
+      <ion-col>
+        <strong>Vendor Name: </strong>{{orderData.vendor_name_show}}
+      </ion-col>
+    </ion-row>
+   
+    <ion-row *ngIf="orderData.product_type!='Donation' && orderData.vendor_email && (orderData.status=='processing' || orderData.status=='completed')">
+      <ion-col>
+        <strong>Vendor Email: </strong>{{orderData.vendor_email_show}}
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="orderData.product_type!='Donation' && orderData.vendor_phone && (orderData.status=='processing' || orderData.status=='completed')">
+      <ion-col>
+        <strong>Vendor Phone: </strong>{{orderData.vendor_phone}}
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="orderData.product_type!='Donation' && orderData.vendor_description">
+      <ion-col>
+        <strong>Vendor Description: </strong>{{orderData.vendor_description}}
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="orderData.product_type!='Donation' && orderData.vendor_name">
+      <ion-col>
+        <strong>Vendor Rating: </strong>
+        <span *ngFor="let i of [1,2,3,4,5]" >
+
+          <span *ngIf="(orderData.rataData.rating >= i)">
+            <ion-icon name="star" class="text-green"></ion-icon>
+          </span>
+          <span *ngIf="(orderData.rataData.rating < i)">
+            <span *ngIf="(orderData.rataData.rating > (i-1))">
+              <ion-icon name="star-half" class="text-green"></ion-icon>
+            </span>
+            <span *ngIf="(orderData.rataData.rating <= (i-1))">
+              <ion-icon name="star-outline" class="text-gray"></ion-icon>
+            </span>
+          </span>
+    
+        </span>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="orderData.product_type!='Donation'">
+      <ion-col *ngIf="orderData.rataData.comments.length>0">
+        <strong >Reviews: </strong>
+        <div *ngFor="let r of orderData.rataData.comments; let i = index;">
+            <p class="review-p" *ngIf="i<2">
+              {{r.comment}}
+              <br *ngIf="i<2">
+              <span *ngIf="i<2">({{r.commented_on}})</span>
+            </p>
+            <p *ngIf="i==2" class="seemore">
+              <a (click)="gotoreviews(orderData.rataData.comments)">See all reviews</a>
+            </p>
+        </div>
+      </ion-col>
+
+      <ion-col *ngIf="orderData.vendor_name && orderData.rataData.comments.length<1">
+        <strong >Reviews: </strong> No review found.
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="head-row">
+      <ion-col>
+        <strong>Order Status:</strong>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <strong>Status: </strong>{{orderData.status_show}}
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="head-row" *ngIf="orderData.media_description || orderData.media=='yes'">
+      <ion-col>
+        <strong>Media Files:</strong>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="orderData.media_description">
+      <ion-col>
+        <strong>Description: </strong>{{orderData.media_description}}
+      </ion-col>
+    </ion-row>
+   
+    <ion-row *ngIf="orderData.media=='yes'" >
+      <div *ngFor="let o of orderData.media_file" class="pic-div">
+        <strong>{{o.media_type}}: </strong>
+        <img src="{{o.media_path}}" class="img-det" *ngIf="o.media_type=='Image'" imageViewer/>
+        <img src="assets/imgs/play.png" class="play" *ngIf="o.media_type=='Video'" (click)="playVideo(o.media_path)" />
+      </div>
+    </ion-row>
+  
+    <ion-row class="row-centr">
+      <ion-col>
+        <ion-button size="small" *ngIf="orderData.status_show!='Payment Complete' && orderData.status_show!='Completed' && orderData.status_show!='Rejected' && orderData.vendor_email" class="btn-green fxd-width" (click)="gotochat(orderData.id)">Message</ion-button> 
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <ion-button size="small" color="dark" class="btn-darkred  fxd-width" (click)="reportProblem(orderData.id)">Report Problem</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+

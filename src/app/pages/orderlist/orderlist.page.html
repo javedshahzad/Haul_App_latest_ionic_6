@@ -1,0 +1,196 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-icon name="arrow-back" (click)="back()" style="font-size: 20px; margin-left: 10px;" slot="start"></ion-icon>
+    <ion-title>Orders List</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="showArc==true">
+    <ion-fab-button color="tertiary" (click)="submitArc()">
+      Archive
+    </ion-fab-button>
+  </ion-fab>
+
+<a  (click)="enableArchive();" class="arch">Archive Orders</a>
+
+<a  (click)="viewArchive();" class="viewarch">View Archive Order</a>
+
+<ion-grid class="grid-center">
+
+  <ion-row class="head-row" color="tertiary">
+    <ion-col>
+      <strong>Date Created</strong>
+    </ion-col>
+    <ion-col>
+      <strong>Type</strong>
+    </ion-col>
+    <ion-col>
+      <strong>Status</strong>
+    </ion-col>
+    <ion-col>
+      <strong>$</strong>
+    </ion-col>
+    <ion-col>
+      <strong>Order</strong>
+    </ion-col>
+
+  </ion-row>
+
+  <!-- <ion-list [virtualScroll]="orderList" [approxItemHeight]="'300px'">
+
+    <ion-item *virtualItem="let order; let i = index;">
+      {{i}}
+    </ion-item>
+  
+  </ion-list> -->
+
+  <div *ngIf="orderList.length > 0 ">
+    <ion-row *ngFor="let order of orderList; let i = index;">
+      <ion-col>
+        {{order.date_created}}
+  
+        <ion-checkbox (ionChange)="addArc(order.id, $event)" *ngIf="showArc==true"></ion-checkbox>
+      </ion-col>
+      <ion-col (click)="viewOrder(order)">
+        {{order.product_type_show}}
+      </ion-col>
+      <ion-col (click)="viewOrder(order)">
+        {{order.status_show}}
+      </ion-col>
+      
+      <ion-col (click)="viewOrder(order)">
+        <span><strong>Price:</strong><br>${{order.price}}</span>
+      </ion-col>
+  
+      <ion-col>
+        {{order.id}}  
+        <div *ngIf="order.status_show=='Pending Payment' ">
+          <button ion-button small class="e-small-btn btn-green" *ngIf="order.price!='0.00'" (click)="makePayment(order.payment_url,order.id)">Pay Now</button>
+        </div>
+  
+        <div *ngIf="order.status_show!='Pending Payment' && order.status_show!='Payment Complete' && order.status_show!='Completed' && order.status_show!='Rejected'" >
+          <button ion-button small class="e-small-btn btn-green" (click)="showUndoBtn(i,order.id)" >View Bids</button>
+        </div>
+  
+        <div *ngIf="order.status_show=='Completed' && order.already_rated!='1'" >
+          <button ion-button small class="e-small-btn btn-blue" (click)="giveRate(order.id,order.customer_id)" >Review</button>
+        </div>
+        
+      </ion-col>
+  
+      <div [attr.id]="'undoBtn'+i" *ngIf="showBtn===i" class="acc-div">
+  
+          <ion-grid class="grid-center-inner" *ngIf="showPL">
+            <ion-row class="head-row-inner">
+                <ion-col>
+                    <ion-spinner name="bubbles"></ion-spinner>
+                </ion-col>
+            </ion-row>
+          </ion-grid>
+  
+          <ion-grid class="grid-center-inner" *ngIf="!showPL">
+              <ion-row class="head-row-inner">
+                  <ion-col col-4>
+                    <strong>Vendor Name</strong>
+                  </ion-col>
+                  <ion-col col-4>
+                    <strong>Bid Amount</strong>
+                  </ion-col>
+                  <ion-col col-4>
+                    <strong>Action</strong>
+                  </ion-col>
+              </ion-row>
+            
+              <ion-row class="head-row-inner" *ngFor="let bl of bidlist">
+                  <ion-col col-4>
+                   {{bl.vendor_name | hidevalue}}
+  
+                   <div class="starrate">
+                    <span *ngFor="let i of [1,2,3,4,5]" >
+  
+                      <span *ngIf="(bl.rating >= i)">
+                        <ion-icon name="star" class="text-green"></ion-icon>
+                      </span>
+                      <span *ngIf="(bl.rating < i)">
+                        <span *ngIf="(bl.rating > (i-1))">
+                          <ion-icon name="star-half" class="text-green"></ion-icon>
+                        </span>
+                        <span *ngIf="(bl.rating <= (i-1))">
+                          <ion-icon name="star-outline" class="text-gray"></ion-icon>
+                        </span>
+                      </span>
+                
+                    </span>
+                  </div>
+                  <div class="bid-det">
+                      <a (click)="showDesc(bl.pro_desc);">Provider Description</a>
+                  </div>
+                  <div class="bid-det">
+                      <a (click)="gotoreviews(bl.comments)">See Reviews</a>
+                  </div>
+                   
+                  </ion-col>
+                  <ion-col col-4>
+                    ${{bl.bid_price}}
+                    <br>
+                    <a *ngIf="bl.description!=''" (click)="bidDetail(bl.description)">View description</a>
+                    <br>
+                    
+                    <!-- <img *ngIf="order.rec_imagepath && order.rec_imagepath!=''" src="{{order.rec_imagepath}}"> -->
+                    <img class="vend-img" [src]="bl.vendor_imagepath" imageViewer>
+  
+                  </ion-col>
+                  <ion-col col-4>
+                      <ion-button size="small" class="e-small-btn btn-green" (click)="bidApproval('accept','customer',bl.order_id,bl.vendor_id)">Accept</ion-button>
+                      <ion-button size="small" color="danger"  (click)="bidApproval('reject','customer',bl.order_id,bl.vendor_id)">Reject</ion-button>
+                      <ion-button size="small" class="e-small-btn btn-green" (click)="gotochat(order, bl.vendor_id)">Message</ion-button>
+                  </ion-col>
+              </ion-row>
+  
+              <ion-row class="head-row-inner" *ngIf="noBid">
+                  <ion-col>
+                   No bid found.
+                  </ion-col>
+              </ion-row>
+  
+              <ion-row class="head-row-inner" *ngIf="allReject">
+                <ion-col col-8>
+                 Sorry! All requests have been rejected.
+                </ion-col>
+  
+                <ion-col col-4>
+                  <ion-button size="small" class="e-small-btn btn-red" (click)="setOrderStatus(order.id,'reject')">Cancel</ion-button>
+                </ion-col>
+              </ion-row>
+  
+            </ion-grid>
+      </div>
+  
+    </ion-row>
+  </div>
+
+  <ion-row class="nodata" *ngIf="orderList.length === 0 ">
+    <ion-col>No order found</ion-col>
+  </ion-row> 
+
+</ion-grid>
+
+<ion-infinite-scroll  (ionInfinite)="loadMoreOrders($event)">
+  <ion-infinite-scroll-content  loadingSpinner="bubbles" loadingText="Loading more orders..."></ion-infinite-scroll-content>
+</ion-infinite-scroll>
+
+</ion-content>
+
+
+
+

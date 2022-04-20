@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActionSheetController, AlertController, LoadingController, MenuController, NavController, Platform } from '@ionic/angular';
+import { ActionSheetController, AlertController, IonContent, LoadingController, MenuController, NavController, Platform } from '@ionic/angular';
 import { WordpressService } from 'src/app/providers/wordpress.service';
 import { Device } from '@ionic-native/device/ngx'; 
 import { CallNumber } from '@ionic-native/call-number/ngx';
@@ -11,10 +11,10 @@ import { UtilsService } from 'src/app/providers/utils.service';
   styleUrls: ['./walkthrough.page.scss'],
 })
 export class WalkthroughPage implements OnInit {
-  // @ViewChild(Content) content: Content;
+  @ViewChild(IonContent, { static: false }) content: IonContent;
   lastSlide = false;
   services:any;
-  isLoggedin:boolean = false;
+  isLoggedin:boolean=false;
   userStoredData: any;
   userRole: string;
   menurole: string;
@@ -41,8 +41,8 @@ export class WalkthroughPage implements OnInit {
 
     // this.menu.swipeEnable(false);
     // Check role of logged in user
-   // this.userStoredData = JSON.parse(localStorage.getItem('userStoredData'));
-   this.userStoredData = 'vendor';
+    this.userStoredData = JSON.parse(localStorage.getItem('userStoredData'));
+   //this.userStoredData = 'vendor';
     if(this.userStoredData==undefined){
 
       this.isLoggedin = true;
@@ -61,8 +61,8 @@ export class WalkthroughPage implements OnInit {
     }
     else{
       this.isLoggedin = false;
-      // this.userRole = this.userStoredData['role'];
-      this.userRole = 'vendor';
+       this.userRole = this.userStoredData['role'];
+      //this.userRole = 'vendor';
 
       if(this.userRole == "customer"){
         this.menu.enable(true, 'customer-menu');
@@ -80,20 +80,20 @@ export class WalkthroughPage implements OnInit {
       if(this.userRole=='vendor'){
         // Vendor options comes Here
         this.services = [
-                  { title: 'Order List', icon: 'assets/imgs/vendor-choices.png', id:'0',url:"VendorOrderlistPage"},
-                  { title: 'Profile Setting', icon: 'assets/imgs/vendor-settings.png', id:'0',url:"VendorProfilesettingsPage"},
-                  { title: 'Vendor Services', icon: 'assets/imgs/vendor-services.png', id:'0',url:"ServicesPage"},
+                  { title: 'Order List', icon: 'assets/imgs/vendor-choices.png', id:'0',url:"vendororders"},
+                  { title: 'Profile Setting', icon: 'assets/imgs/vendor-settings.png', id:'0',url:"vendorprofilesettings"},
+                  { title: 'Vendor Services', icon: 'assets/imgs/vendor-services.png', id:'0',url:"service"},
               ];
         this.menurole='vendor';
         this.isVendor=true;
 
         this.pagesV = [
           { title: "Click Here for Step by Step setup",url: "readme", color:"secondary"},
-          { title: "Customer Messages",url: "MessagesPage" ,color:"secondary"},
+          { title: "Customer Messages",url: "messages" ,color:"secondary"},
           { title: "Work Orders",url: "vendororders", color:"secondary" },
-          { title: "Account Settings",url: "VendoraccountPage", color:"secondary" },
-          { title: "Service Provider Profile",url:  "VendorProfilesettingsPage", color:"secondary"},
-          { title: "Manage Moving Services",url: "ServicesPage" , color:"secondary"},
+          { title: "Account Settings",url: "vendoraccount", color:"secondary" },
+          { title: "Service Provider Profile",url:  "vendor-profilesettings", color:"secondary"},
+          { title: "Manage Moving Services",url: "service" , color:"secondary"},
           { title: "Resources",url: "resources" , color:"medium"},
           { title: "FAQs",url: "faq", color:"medium" },
           { title: "About Us",url: "aboutus", color:"medium" },
@@ -116,6 +116,14 @@ export class WalkthroughPage implements OnInit {
       }
     }
   }
+  ionViewWillEnter() { 
+    console.log("back on page");
+    //this.menu.enable(false)
+    setTimeout(() => {
+      this.content.scrollToTop();
+    }, 400)
+  }
+
   async selectType() {
     const actionSheet = await this.actionSheetCtrl.create({
       header: 'Select Action',
@@ -243,9 +251,9 @@ export class WalkthroughPage implements OnInit {
       this.nav.navigateForward("login",{queryParams:{  role: 'vendor'}});
     }
   
-    // goToSignup() {
-    //   this.nav.push(SignupPage);
-    // }
+    goToSignup() {
+      this.nav.navigateForward("signup");
+    }
   
     contactUs() {
       this.nav.navigateForward("contactus");
@@ -259,13 +267,13 @@ export class WalkthroughPage implements OnInit {
       this.nav.navigateForward("faq"); 
     }
   
-    // openWorkOrders(){
-    //   this.nav.push(OrderlistPage); 
-    // }
+    openWorkOrders(){
+      this.nav.navigateForward("orderlist"); 
+    }
   
-    // openCustMsg(){
-    //   this.nav.push(MessagesPage); 
-    // }
+    openCustMsg(){
+      this.nav.navigateForward("messages"); 
+    }
 
     doSignup(service){
       console.log(service);

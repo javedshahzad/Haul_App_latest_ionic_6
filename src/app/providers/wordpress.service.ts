@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.prod';
-
+import { NativeStorage } from '@ionic-native/native-storage/ngx';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,8 @@ import { environment } from 'src/environments/environment.prod';
 export class WordpressService {
 
   constructor(
-    private http : HttpClient
+    private http : HttpClient,
+    private nativeStorage:NativeStorage
   ) { }
 
   getRecentPosts(categoryId:number, page:number = 1){
@@ -81,23 +82,23 @@ export class WordpressService {
     .subscribe((res:any) => res.json());
   }
 
-  // getUser(){
-  //   return this.nativeStorage.getItem('user');
-  // }
+  getUser(){
+    return this.nativeStorage.getItem('user');
+  }
 
-  // setUser(user){
-  //   console.log("good");
-  //   //return this.nativeStorage.setItem('fancase_user', user);
-  // this.nativeStorage.setItem('user', user)
-  // .then(
-  //   () => console.log('Stored item!'),
-  //   error => console.error('Error storing item', error)
-  // );
-  // }
+  setUser(user){
+    console.log("good");
+    //return this.nativeStorage.setItem('fancase_user', user);
+  this.nativeStorage.setItem('user', user)
+  .then(
+    () => console.log('Stored item!'),
+    error => console.error('Error storing item', error)
+  );
+  }
 
-  // logOut(){
-  //   return this.nativeStorage.remove('user');
-  // }
+  logOut(){
+    return this.nativeStorage.remove('user');
+  }
 
   doLogin(username, password){
     return this.http.post(environment.wordpress_url + 'wp-json/jwt-auth/v1/token',{

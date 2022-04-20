@@ -1,0 +1,30 @@
+
+    .setting .item:first-child{border-top: none!important;}
+    ion-list.setting .item {
+      border-bottom: 1px solid #ddd!important;
+    }
+    .item-block {
+      border-bottom: none!important;
+    }
+    // .setting img {
+      
+    // }
+    .setting .item {
+      padding-left: 0px!important;
+    }
+  
+    .badge {
+      color: #fff;
+      // background-color: #39c56e!important;
+      background-color: #34b364 !important;
+    }
+    ion-avatar ion-img,ion-avatar img {
+      overflow: hidden!important;
+      width: 55px!important;
+      height: 55px!important;
+  }
+  ion-icon.back-button-icon {
+      color: #ffffff !important;
+  }
+  
+  

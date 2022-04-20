@@ -1,0 +1,136 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-icon name="arrow-back" (click)="back()" style="font-size: 20px; margin-left: 10px;" slot="start"></ion-icon>
+    <ion-title>Services</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <img src="assets/imgs/haul-white.png" class="top-logo">
+  <h4 class="h-heading ion-text-center">Haul Service Provider Portal</h4>
+  <h5 class="h-border">Service Provider Profile</h5>
+  <form class="sample-form post-form" [formGroup]="post_form" (ngSubmit)="activateServices()" #documentEditForm="ngForm">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12">
+          <ion-button expand="block" color="tertiary">
+            Keys to Success
+          </ion-button>
+          <!-- <div ion-button block class="form-action-button create-post-button white-btn">Keys to Success</div> -->
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+
+            <ul class="tick-ul">
+              <li>Sense of Urgency on responding to customer request</li>
+              <li>Providing Exceptional Customer Feedback</li>
+              <li>If Job is completed early, ask customer for other things that can be moved around residence</li>
+              <li>Courteous, Prompt, Respectful, Handle with Care!</li>
+              <li>Be competitive with your pricing!</li>
+              <li>5 Star Customer Feedback</li>
+            </ul>
+
+            <!-- <p>Need help setting this up?  Please do not hesitate to contact us.  Otherwise, please click on services below.</p> -->
+            <p class="line-h"><b>Select Services Below.</b> Select the service as Active if it will become a service offered by your Moving Company.  
+            <strong>Need Help?</strong>  <strong><a style="text-decoration: underline;" (click)="contactHaul()" class="contact-anchor">Contact Haul Customer Service</a></strong></p>
+        </ion-col>
+      </ion-row>
+      <h5 class="border-grey"></h5>  
+
+      <ion-row>
+        <ion-col size="6">
+          <div ion-button block class="form-action-button create-post-button white-btn" >Labor Only</div>
+        </ion-col>
+
+        <ion-col size="6">
+          <ion-item class="lft-pad">
+            <ion-label *ngIf="s_lo==true" class="chk-act">Active</ion-label>
+            <ion-label *ngIf="s_lo==false" class="chk-inact">Inactive</ion-label>
+            <ion-checkbox formControlName="s_laboronly" class="chk-hide" [ngModel]="s_lo" (ionChange)="documentEditForm.ngSubmit.emit()"></ion-checkbox>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+            <p><strong>Description:</strong> Customers may request labor only assistance to arrive at a residence or business to assist with moving items.   Tasks performed can include: Unloading / Loading,  Relocating Furniture, dissembling items for moving, etc….  Helpers should be prepared to lift heavy weight as requested by customer.</p>
+            <p><strong>Requirements:</strong> Government Issued Photo ID.  Ability to travel to customer’s residence.</p>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="6">
+          <div ion-button block class="form-action-button create-post-button white-btn" >Item Delivery</div>
+        </ion-col>
+        <ion-col size="6">
+          <ion-item class="lft-pad">
+            <ion-label *ngIf="s_pd==true" class="chk-act">Active</ion-label>
+            <ion-label *ngIf="s_pd==false" class="chk-inact">Inactive</ion-label>
+            <ion-checkbox  formControlName="s_pickupdelivey" class="chk-hide" [ngModel]="s_pd" (ionChange)="documentEditForm.ngSubmit.emit()"></ion-checkbox>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+            <p><strong>Description:</strong> Customer will capture a picture / video with their mobile device and provide a brief description of the item.  You as the service provider will have the ability to review the customer request and send a response with the amount to move an item.  Consider time of travel, type of item, special equipment that may be required.  Customer will select either 1 helper (just you and your vehicle) or 2 helpers (you, someone else and your vehicle).</p>
+            <p><strong>Requirements:</strong> Government Issued Photo ID.  Ability to travel to customer’s residence.</p>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="6">
+          <div ion-button block class="form-action-button create-post-button white-btn" >Junk Removal</div>
+        </ion-col>
+        <ion-col size="6">
+          <ion-item class="lft-pad">
+            <ion-label *ngIf="s_sm==true" class="chk-act">Active</ion-label>
+            <ion-label *ngIf="s_sm==false" class="chk-inact">Inactive</ion-label>
+            <ion-checkbox  formControlName="s_smallmove" class="chk-hide" [ngModel]="s_sm" (ionChange)="documentEditForm.ngSubmit.emit()"></ion-checkbox>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+          <p><strong>Description:</strong> Customer will select this option when they require junk removal.  We ask the customer to provide a description of what items will require moving.   Customer should provide estimated weight, size, specific area, type of item, etc.  Items could include: Construction debris such as wood, drywall, concrete, yard clippings, major appliance, bulky furniture, mattress, etc, tires, concrete removal, gas powered items.</p>
+          <p><strong>Requirements:</strong> Government Issue Photo ID / Business License. </p>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="6">
+          <div ion-button block class="form-action-button create-post-button white-btn" >Full Move</div>
+        </ion-col>
+        <ion-col size="6">
+          <ion-item class="lft-pad">
+            <ion-label *ngIf="s_fm==true" class="chk-act">Active</ion-label>
+            <ion-label *ngIf="s_fm==false" class="chk-inact">Inactive</ion-label>
+            <ion-checkbox formControlName="s_fullmove" class="chk-hide" [ngModel]="s_fm" (ionChange)="documentEditForm.ngSubmit.emit()"></ion-checkbox>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+          <p><strong>Description:</strong> Customer will select this option when performing Larger moves typically Large Homes or Businesses.   The work order will contain details such as: Service Date / Time of Day, stair wells inside and outside home, upper level / lower level square footage, total bedrooms, bathrooms, rooms upstairs, rooms downstairs, attic sq footage, patio, gas, etc… Utilize the message system to clarify any questionable service details prior to bidding.</p>
+          <p><strong>Requirements:</strong> Government Issued Photo ID / Business License</p>
+        </ion-col>
+      </ion-row>
+
+      <p class="danger cent-al" *ngIf="dataStatus && dataStatus=='pending'">Data is waiting for the admin approval.</p>
+      
+    </ion-grid>
+
+    
+</form>
+
+<ion-row>
+<ion-col size="12">
+  <ion-button expand="block" class="form-action-button create-post-button" type="submit" (click)="vendorResources()">Click to Continue to Resources</ion-button>
+</ion-col>
+</ion-row>
+</ion-content>
+

@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-icon name="arrow-back" (click)="back()" style="font-size: 20px; margin-left: 10px;" slot="start"></ion-icon>
+    <ion-title>Messages</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content  class="login-bg ion-padding">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list class="setting">
+
+    <ion-item *ngFor="let order of orderList" (click)="gotochat(order, order.vendor_id)">
+      <ion-avatar item-start>
+        <img *ngIf="order.rec_imagepath && order.rec_imagepath!=''" src="{{order.rec_imagepath}}">
+        <img *ngIf="!order.rec_imagepath || order.rec_imagepath==''" src="assets/imgs/user.png" >
+      </ion-avatar>
+      <h2 *ngIf="role=='customer' && order.vendor_name">{{order.vendor_name_show}}</h2>
+      <h2 *ngIf="role=='customer' && !order.vendor_name">{{order.vendor_email_show}}</h2>
+      
+      <h2 *ngIf="role=='vendor' && order.customer_name">{{order.customer_name_show}}</h2>
+      <h2 *ngIf="role=='vendor' && !order.customer_name">{{order.customer_email_show}}</h2>
+
+      <h3><strong>Order Id: </strong>{{order.id}}</h3>
+      <p>{{order.product_type_show}}</p>
+
+      <ion-badge *ngIf="order.unread_msgs && order.unread_msgs!=0" item-end>{{order.unread_msgs}}</ion-badge>
+    </ion-item>
+
+  </ion-list>
+
+</ion-content>
+

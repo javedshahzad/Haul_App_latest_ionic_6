@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1052633147602",
+    "firebase_url": "https://haul-1524551148276.firebaseio.com",
+    "project_id": "haul-1524551148276",
+    "storage_bucket": "haul-1524551148276.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1052633147602:android:63b3a9811c13d7a6",
+        "android_client_info": {
+          "package_name": "com.knoxweb.haul"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1052633147602-m9or510lbonvvvt4fuutl99v6k0f2cu8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKUj9f1J9hUytNVBLWEttw7zIeKyebSAc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

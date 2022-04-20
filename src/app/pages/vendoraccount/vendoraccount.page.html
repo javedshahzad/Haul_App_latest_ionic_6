@@ -1,0 +1,220 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-icon name="arrow-back" (click)="back()" style="font-size: 20px; margin-left: 10px;" slot="start"></ion-icon>
+    <ion-title>Vendor account</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <img src="assets/imgs/haul-white.png" class="top-logo">
+  <h4 class="h-heading ion-text-center">Haul Service Provider Portal</h4>
+  <h5 class="h-border">Account Settings</h5>
+
+  <form class="sample-form post-form" [formGroup]="post_form" (ngSubmit)="vendorAccountSettings();">
+    <ion-grid>
+  
+        <ion-row>
+          <ion-col size="5">
+              <p>First Name:</p>
+          </ion-col>
+          <ion-col size="7" class="input-bg">
+            <ion-input type="text" placeholder="First Name" formControlName="firstname" [ngModel]="fn"></ion-input>
+          </ion-col>
+        </ion-row>
+  
+        <ion-row>
+          <ion-col size="5">
+              <p>Last Name:</p>
+          </ion-col>
+          <ion-col size="7" class="input-bg">
+              <ion-input type="text" placeholder="Last Name" formControlName="lastname" [ngModel]="ln"></ion-input>
+          </ion-col>
+        </ion-row>
+  
+        <ion-row>
+          <ion-col size="12">
+            <h4>PERSONAL INFORMATION</h4>
+          </ion-col>
+  
+          <ion-col size="5">
+            <p>Mailing Address:</p>
+          </ion-col>
+          <ion-col size="12">
+            <ion-searchbar class="input-bg"
+            [(ngModel)]="autocomplete.query"
+            (ionInput)="updateSearch()"
+            formControlName="mailing_address"
+            placeholder="Mailing Address">
+            </ion-searchbar>
+            <ion-list class="placelist">
+            <ion-item class="input-bg" *ngFor="let item of autocompleteItems" (click)="chooseItem(item)">
+            {{ item.description }}
+            </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+  
+        <ion-row>
+          <ion-col size="5">
+              <p>Phone Number:</p>
+          </ion-col>
+          <ion-col size="7" class="input-bg">
+            <ion-input type="text" placeholder="Phone Number" formControlName="phone" [ngModel]="mailingPhone" mobile></ion-input>
+          </ion-col>
+        </ion-row>
+  
+        <ion-row>
+          <ion-col size="5">
+              <p>Email Address:</p>
+          </ion-col>
+          <ion-col size="7" class="input-bg">
+            <ion-input type="email" placeholder="Email" formControlName="email" [ngModel]="mailingEmail"></ion-input>
+          </ion-col>
+        </ion-row>
+  
+        <ion-row>
+          <ion-col size="12">
+            <h4>BANKING (ACH Deposit):</h4>
+            <p class="boldtext bot-marg">Haul deposits funds directly into your account from services performed via ACH transfers.</p>
+          </ion-col>
+          <ion-col size="5">
+              <p>Routing Number:</p>
+          </ion-col>
+          <ion-col size="7" class="input-bg">
+            <ion-input type="password" placeholder="Routing Number" formControlName="routing_number" [ngModel]="routingNumber" digitonly></ion-input>
+          </ion-col>
+        </ion-row>
+  
+        <ion-row>
+          <ion-col size="5">
+              <p>Account Number:</p>
+          </ion-col>
+          <ion-col size="7" class="input-bg">
+            <ion-input type="password" placeholder="Account Number" formControlName="account_number" [ngModel]="accountNumber" digitonly></ion-input>
+          </ion-col>
+        </ion-row>
+  
+        <ion-row>
+          <ion-col size="12">
+            <h4>Legal Documentation:</h4>
+          </ion-col>
+          <ion-col size="12">
+              <p>Haul requires documentation to protect its Moving Service. Some services require additional Proof of insurance or CDL requirements.   Please see services below and submit required documentation applicable.</p>
+              <ul class="list_view">
+                <li><strong>LABOR ONLY FOR HIRE –</strong> Government Issued Photo ID</li>
+                <li><strong>ITEM DELIVERY -</strong> Government Issued ID</li>
+                <li><strong>JUNK REMOVAL -</strong> Government Issued Photo ID</li>
+                <li><strong>FULL SERVICE MOVE -</strong> Government Issued Photo ID</li>
+              </ul>
+          </ion-col>
+        </ion-row>
+        <br>
+        <!-- <ion-row>
+          <ion-col size="12">
+            <h4 class="no-marg">Download & Print:</h4>
+          </ion-col>
+          <ion-col size="12">
+              <p class="marg-bot"><a href="#" (click)="downloadForm('agreement')">Contractor Agreement</a></p>
+              <p class="marg-bot"><a href="#" (click)="downloadForm('policy')">Privacy Policy</a></p>
+              <br>
+          </ion-col>
+        </ion-row> -->
+  
+        <ion-row>
+          <ion-col size="7">
+              <p><strong>Government ID:</strong></p>
+              <p>Business License, Photo ID, Green Card, Visa, Pass Port</p>
+          </ion-col>
+          <ion-col size="5" class=" full-width-child">
+            <ion-button class="doc-upload" ion-button color="secondary" (click)="getImage('pid')">Upload</ion-button>
+            <!-- <a href="#" class="doc-upload" ion-button color="secondary" (click)="getImage('pid')">Upload</a> -->
+          </ion-col>
+  
+          <ion-input type="hidden" formControlName="ip_pid" [(ngModel)]="imageURI_pid_arr"></ion-input>
+        </ion-row>
+  
+        <ion-row>
+          <ion-col size="12">
+              <div class="img-span" *ngFor="let ipa of imageURI_pid_arr;let i=index" >{{ipa | basename}}<ion-icon class="span-cross" name="close" (click)="delImg('pid',i);"></ion-icon>
+              </div>
+          </ion-col>
+        </ion-row>
+  
+        <!-- <ion-row>
+          <ion-col size="7">
+              <p><strong>W9 IRS Form:</strong></p>
+          </ion-col>
+          <ion-col size="5" class=" full-width-child">
+            <a href="#" class="doc-upload" ion-button color="secondary" (click)="getImage('irs')">{{imageURI_irs == '' ? 'Upload' : 'Uploaded / Change'}}</a>
+          </ion-col>
+  
+          <ion-input type="hidden" formControlName="ip_irs" [(ngModel)]="imageURI_irs"></ion-input>
+  
+        </ion-row> -->
+  
+  
+        <ion-row>
+            <ion-col size="7">
+                <p><strong>Insurance Declaration Page:</strong></p>
+            </ion-col>
+            <ion-col size="5" class=" full-width-child">
+              <ion-button class="doc-upload"  color="secondary" (click)="getImage('ins')">Upload</ion-button>
+              <!-- <a href="#" class="doc-upload" ion-button color="secondary" (click)="getImage('ins')">Upload</a> -->
+            </ion-col>
+    
+            <ion-input type="hidden" formControlName="ip_ins" [(ngModel)]="imageURI_ins_arr"></ion-input>
+          </ion-row>
+    
+          <ion-row>
+            <ion-col size="12">
+                <div class="img-span" *ngFor="let ipa1 of imageURI_ins_arr;let i=index" >{{ipa1 | basename}}<ion-icon class="span-cross" name="close" (click)="delImg('ins',i);"></ion-icon>
+                </div>
+            </ion-col>
+          </ion-row>
+  
+  
+  
+          <ion-row>
+              <ion-col size="7">
+                  <p><strong>Other:</strong></p>
+              </ion-col>
+              <ion-col size="5" class=" full-width-child">
+                <ion-button class="doc-upload" ion-button color="secondary" (click)="getImage('oth')">Upload
+
+                </ion-button>
+                <!-- <a href="#" class="doc-upload" ion-button color="secondary" (click)="getImage('oth')">Upload</a> -->
+              </ion-col>
+      
+              <ion-input type="hidden" formControlName="ip_oth" [(ngModel)]="imageURI_oth_arr"></ion-input>
+          </ion-row>
+    
+          <ion-row>
+            <ion-col size="12">
+                <div class="img-span" *ngFor="let ipa2 of imageURI_oth_arr;let i=index" >{{ipa2 | basename}}<ion-icon class="span-cross" name="close" (click)="delImg('oth',i);"></ion-icon>
+                </div>
+            </ion-col>
+          </ion-row>
+  
+        <ion-row>
+          <ion-col size="12">
+              <p class="marg-top">Documents can also be sent via email to: <span class="span-blue">admin@haulonline.com</span></p>
+              <p class="marg-top">Include company ID in header of email to avoid processing delays.</p>
+          </ion-col>
+        </ion-row>
+  
+      </ion-grid>
+  
+      <section class="form-section" padding>
+        <ion-button expand="block" color="secondary" class="form-action-button create-post-button" type="submit" [disabled]="!post_form.valid">Save</ion-button>
+      </section>
+  
+  </form>
+  
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12">
+          <ion-button expand="block" color="secondary"  class="form-action-button create-post-button" type="submit" (click)="vendorProfileLink()">Click to Continue to Service Provider Profile</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>

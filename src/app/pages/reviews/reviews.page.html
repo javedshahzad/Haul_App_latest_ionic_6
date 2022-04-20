@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-icon name="arrow-back" (click)="back()" style="font-size: 20px; margin-left: 10px;" slot="start"></ion-icon>
+    <ion-title>Service Provider's Reviews</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-grid class="grid">
+      <ion-row>
+          <ion-col>
+              <div *ngFor="let r of comments; let i = index;">
+                  <p class="review-p" >
+                    {{r.comment}}
+                    <br>
+                    <span>({{r.commented_on}})</span>
+                  </p>
+              </div>
+            </ion-col>
+        </ion-row>
+  </ion-grid>
+</ion-content>
+

@@ -321,9 +321,8 @@ async submitArc(){
 }
 
 viewArchive(){
-  this.nav.navigateForward("ArchivedordersPage");
+  this.nav.navigateForward("archivedorders");
 }
-
 async doRefresh(refresher) {
   this.morePagesAvailable = true;
   this.page_no = 0;

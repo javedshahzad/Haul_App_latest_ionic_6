@@ -4,7 +4,7 @@ import { LoadingController, ModalController, NavController } from '@ionic/angula
 import { UtilsService } from 'src/app/providers/utils.service';
 import { WordpressService } from 'src/app/providers/wordpress.service';
 import { ReportproblemPage } from '../reportproblem/reportproblem.page';
-
+import { StreamingMedia, StreamingVideoOptions } from '@ionic-native/streaming-media/ngx';
 @Component({
   selector: 'app-orderdetails',
   templateUrl: './orderdetails.page.html',
@@ -19,8 +19,8 @@ order_id:any;
     public loadingCtrl: LoadingController,
     public wordpressService: WordpressService,
     public modalCtrl: ModalController,
-    private util :UtilsService
-    // private streamingMedia: StreamingMedia
+    private util :UtilsService,
+    private streamingMedia: StreamingMedia
   ) { 
     this.activeRoute.queryParams.subscribe((res:any)=>{
       console.log(res)
@@ -32,14 +32,14 @@ order_id:any;
   }
 
   playVideo(v_url){
-    // let options: StreamingVideoOptions = {
-    //   successCallback: () => { console.log('Video played') },
-    //   errorCallback: (e) => { console.log('Error streaming') },
-    //   shouldAutoClose: true,
-    //   controls: false
-    // };
+    let options: StreamingVideoOptions = {
+      successCallback: () => { console.log('Video played') },
+      errorCallback: (e) => { console.log('Error streaming') },
+      shouldAutoClose: true,
+      controls: false
+    };
     
-    // this.streamingMedia.playVideo(v_url, options);
+    this.streamingMedia.playVideo(v_url, options);
   }
 
   gotochat(){
