@@ -113,7 +113,6 @@ export class MoveVideoPage implements OnInit {
       buttons: [
         {
           text: 'Signin & Proceed',
-          role: 'cancel',
           handler: async () => {
             console.log('signin clicked');
             this.util.dismisloading()

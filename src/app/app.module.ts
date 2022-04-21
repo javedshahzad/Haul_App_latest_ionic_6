@@ -22,7 +22,7 @@ import { VideoEditor } from '@ionic-native/video-editor/ngx';
 import { MediaCapture } from '@ionic-native/media-capture/ngx';
 import { DocumentViewer } from '@ionic-native/document-viewer/ngx';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
-import { Firebase } from '@ionic-native/firebase/ngx';
+import { FCM } from '@ionic-native/fcm/ngx';
 import { SafariViewController } from '@ionic-native/safari-view-controller/ngx';
 import { StreamingMedia, StreamingVideoOptions } from '@ionic-native/streaming-media/ngx';
 
@@ -47,7 +47,7 @@ import { StreamingMedia, StreamingVideoOptions } from '@ionic-native/streaming-m
       MediaCapture,
       DocumentViewer,
       NativeStorage,
-      Firebase,
+      FCM,
       SafariViewController,
       StreamingMedia,
     { provide: RouteReuseStrategy, 

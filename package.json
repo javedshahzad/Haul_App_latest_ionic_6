@@ -29,9 +29,9 @@
     "@ionic-native/core": "^5.36.0",
     "@ionic-native/device": "^5.36.0",
     "@ionic-native/document-viewer": "^5.36.0",
+    "@ionic-native/fcm": "^5.36.0",
     "@ionic-native/file": "^5.36.0",
     "@ionic-native/file-transfer": "^5.36.0",
-    "@ionic-native/firebase": "^5.36.0",
     "@ionic-native/media-capture": "^5.36.0",
     "@ionic-native/native-storage": "^5.36.0",
     "@ionic-native/safari-view-controller": "^5.36.0",
@@ -73,9 +73,9 @@
     "cordova-plugin-camera": "^4.1.0",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-document-viewer": "^1.0.0",
+    "cordova-plugin-fcm-with-dependecy-updated": "^7.8.0",
     "cordova-plugin-file": "^6.0.2",
     "cordova-plugin-file-transfer": "git+https://github.com/apache/cordova-plugin-file-transfer.git",
-    "cordova-plugin-firebase": "^0.1.20",
     "cordova-plugin-ionic-keyboard": "^2.2.0",
     "cordova-plugin-ionic-webview": "^5.0.0",
     "cordova-plugin-media-capture": "^3.0.3",
@@ -112,8 +112,6 @@
       "cordova-plugin-ionic-keyboard": {},
       "mx.ferreyra.callnumber": {},
       "cordova-sms-plugin": {},
-      "cordova-plugin-androidx": {},
-      "cordova-plugin-androidx-adapter": {},
       "cordova-plugin-file": {},
       "cordova-plugin-camera": {
         "ANDROID_SUPPORT_V4_VERSION": "27.+"
@@ -125,8 +123,18 @@
       "cordova-plugin-nativestorage": {},
       "cordova-plugin-safariviewcontroller": {},
       "cordova-plugin-streaming-media": {},
-      "cordova-plugin-firebase": {}
+      "cordova-plugin-fcm-with-dependecy-updated": {
+        "ANDROID_DEFAULT_NOTIFICATION_ICON": "@mipmap/ic_launcher",
+        "ANDROID_FCM_VERSION": "21.0.0",
+        "ANDROID_FIREBASE_BOM_VERSION": "26.0.0",
+        "ANDROID_GOOGLE_SERVICES_VERSION": "4.3.4",
+        "ANDROID_GRADLE_TOOLS_VERSION": "4.1.0"
+      },
+      "cordova-plugin-androidx": {},
+      "cordova-plugin-androidx-adapter": {}
     },
-    "platforms": []
+    "platforms": [
+      "android"
+    ]
   }
 }

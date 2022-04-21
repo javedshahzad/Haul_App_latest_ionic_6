@@ -5,7 +5,7 @@ import { Device } from '@ionic-native/device/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import firebase from 'firebase';
-import { Firebase } from '@ionic-native/firebase/ngx';
+import { FCM } from '@ionic-native/fcm/ngx';
 import { Router } from '@angular/router';
 
 @Component({
@@ -50,7 +50,7 @@ export class AppComponent {
     public loadingCtrl: LoadingController,
     // private androidFullScreen: AndroidFullScreen,
     private device: Device,
-    public fb: Firebase,
+    private fcm: FCM,
     private nav : NavController,
     private router: Router,
   ) {
@@ -73,7 +73,7 @@ export class AppComponent {
       this.statusBar.show();
       this.statusBar.backgroundColorByHexString('#19385d');
 
-      this.fb.onNotificationOpen().subscribe(
+      this.fcm.onNotification().subscribe(
   			async (notification) => {
             let activeView = this.router.url;
 
@@ -163,18 +163,18 @@ export class AppComponent {
       // this.statusBar.overlaysWebView(false);
       this.splashScreen.hide();
 
-      this.fb.grantPermission();
+      // this.fcm.grantPermission();
 
       //-------- Get firebase token
 
-      this.fb.getToken()
+      this.fcm.getToken()
       .then(token => {
         console.log(`The token is ${token}`);
         localStorage.setItem('dtoken',token);
       }) // save the token server-side and use it to push notifications to this device
       .catch(error => console.error('Error getting token', error));
 
-    this.fb.onTokenRefresh()
+    this.fcm.onTokenRefresh()
       .subscribe((token: string) => {
         console.log(`Got a new token ${token}`);
         localStorage.setItem('dtoken',token);

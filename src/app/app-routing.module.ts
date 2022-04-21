@@ -183,6 +183,10 @@ const routes: Routes = [
     path: 'orderdetailscust',
     loadChildren: () => import('./pages/orderdetailscust/orderdetailscust.module').then( m => m.OrderdetailscustPageModule)
   },
+  {
+    path: 'terms-of-service',
+    loadChildren: () => import('./pages/terms-of-service/terms-of-service.module').then( m => m.TermsOfServicePageModule)
+  },
 ];
 
 @NgModule({
